@@ -1,7 +1,7 @@
 "use client";
 import SubmitButton from "@/components/globals/SubmitButton";
 import TextInput from "@/components/globals/TextInput";
-import { Inputs, LoginFormType } from "@/utils/schemas/types";
+import { LoginFormType } from "@/utils/schemas/types";
 import { LoginSchema } from "@/utils/schemas/zodSchemas";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -13,8 +13,8 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    // watch,
+    // formState: { errors },
   } = useForm<LoginFormType>();
 
   const onSubmit = (value: LoginFormType) => {
