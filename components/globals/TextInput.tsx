@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute, ReactNode } from "react";
+import { TextInputType } from "@/utils/schemas/types";
 
 const TextInput = ({
   label,
@@ -8,15 +8,7 @@ const TextInput = ({
   placeholder,
   dir,
   icon,
-}: {
-  label?: string;
-  id?: string;
-  type: HTMLInputTypeAttribute;
-  className?: string;
-  placeholder?: string;
-  dir?: "ltr" | "rtl";
-  icon?: ReactNode;
-}) => {
+}: TextInputType) => {
   return (
     <div className="flex flex-col items-start gap-2 w-full">
       <label htmlFor={id}>{label}</label>
