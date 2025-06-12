@@ -2,10 +2,12 @@
 import SubmitButton from "@/components/globals/SubmitButton";
 import TextInput from "@/components/globals/TextInput";
 import { Inputs, LoginFormType } from "@/utils/schemas/types";
+import { LoginSchema } from "@/utils/schemas/zodSchemas";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { FaUser } from "react-icons/fa6";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
   const {
@@ -16,7 +18,16 @@ const LoginForm = () => {
   } = useForm<LoginFormType>();
 
   const onSubmit = (value: LoginFormType) => {
-    console.log(value);
+    const isValidValue = LoginSchema.safeParse(value);
+    if (!isValidValue.success) {
+        isValidValue.error.issues.map((iss) => {
+          toast.error(iss.message);
+        })
+    } else {
+      console.log("success => ", value);
+      // TODO add login server action
+      toast.success("شما با موفقیت وارد شدید")
+    }
   };
 
   return (
