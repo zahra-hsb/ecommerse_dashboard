@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm"
 const Login = () => {
     return (
     <>
-        <Card className="!w-1/4 flex flex-col items-center justify-center gap-10">
+        <Card className="!w-1/4 flex flex-col items-center justify-center gap-10 py-16">
             <Logo isShowTitle={false} width={70} height={70} />
             <h3 className="font-bold text-xl">ورود به پنل</h3>
             <LoginForm />
