@@ -33,7 +33,7 @@ const LoginForm = () => {
       />
       <div className="flex flex-col w-full items-center gap-2">
         <SubmitButton text="ورود" />
-        <Link href={"#"} className="text-sm underline">
+        <Link href={"#"} className="text-sm underline hover:text-black/80">
           فراموشی رمز عبور
         </Link>
       </div>
