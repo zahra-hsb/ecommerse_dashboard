@@ -21,7 +21,7 @@ const TextInput = ({
       <input
         type={type}
         dir={dir}
-        className={`p-2 rounded-xl bg-[#d9d9d95b] w-full shadow-sm ${className}`}
+        className={`p-2 rounded-xl bg-[#d9d9d95b] outline-0 px-3 focus:shadow-lg w-full shadow-sm ${className}`}
         placeholder={placeholder}
         id={id}
       />
