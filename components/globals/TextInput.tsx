@@ -8,6 +8,9 @@ const TextInput = ({
   placeholder,
   dir,
   icon,
+  register,
+  // name,
+  required
 }: TextInputType) => {
   return (
     <div className="flex flex-col items-start gap-2 w-full">
@@ -20,6 +23,8 @@ const TextInput = ({
           className={`p-2 rounded-xl bg-[#d9d9d95b] outline-0 px-3 focus:shadow-lg w-full shadow-sm ${className} ${icon ? 'pl-12' : ''}`}
           placeholder={placeholder}
           id={id}
+          // name={name}
+          {...register(id, { required })}
         />
       </div>
     </div>

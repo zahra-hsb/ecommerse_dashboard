@@ -8,7 +8,7 @@ export interface SubmitButtonType {
 
 export interface TextInputType {
   label?: string;
-  id: string;
+  id: "username" | "password";
   type: HTMLInputTypeAttribute;
   className?: string;
   placeholder?: string;
