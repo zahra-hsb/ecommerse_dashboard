@@ -1,4 +1,5 @@
 "use client";
+import { login } from "@/app/actions/auth/login";
 import SubmitButton from "@/components/globals/SubmitButton";
 import TextInput from "@/components/globals/TextInput";
 import { LoginFormType } from "@/utils/schemas/types";
@@ -17,16 +18,16 @@ const LoginForm = () => {
     // formState: { errors },
   } = useForm<LoginFormType>();
 
-  const onSubmit = (value: LoginFormType) => {
+  const onSubmit = async (value: LoginFormType) => {
     const isValidValue = LoginSchema.safeParse(value);
     if (!isValidValue.success) {
-        isValidValue.error.issues.map((iss) => {
-          toast.error(iss.message);
-        })
+      isValidValue.error.issues.map((iss) => {
+        toast.error(iss.message);
+      });
     } else {
-      console.log("success => ", value);
-      // TODO add login server action
-      toast.success("شما با موفقیت وارد شدید")
+      const responseOfLogin = await login(value);
+      if (responseOfLogin.ok) toast.success(responseOfLogin.message);
+      else toast.error(responseOfLogin.message);
     }
   };
 
