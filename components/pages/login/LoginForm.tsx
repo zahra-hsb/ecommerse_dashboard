@@ -1,4 +1,5 @@
 "use client";
+import { createSession } from "@/app/actions/auth/createSession";
 import { login } from "@/app/actions/auth/login";
 import SubmitButton from "@/components/globals/SubmitButton";
 import TextInput from "@/components/globals/TextInput";
@@ -26,7 +27,10 @@ const LoginForm = () => {
       });
     } else {
       const responseOfLogin = await login(value);
-      if (responseOfLogin.ok) toast.success(responseOfLogin.message);
+      if (responseOfLogin.ok) {
+        toast.success(responseOfLogin.message);
+        await createSession(responseOfLogin.data)
+      }
       else toast.error(responseOfLogin.message);
     }
   };
