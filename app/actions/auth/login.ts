@@ -13,7 +13,7 @@ export async function login(props: LoginFormType) {
         ok: true,
         status: 200,
         message: "شما با موفقیت وارد شدید",
-        data: JSON.stringify(foundUser),
+        data: foundUser,
       };
     } else if (foundUser && props.password !== foundUser.password) {
       return {
