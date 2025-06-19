@@ -2,7 +2,7 @@
 import Button from "@/components/globals/Button";
 import { userStore } from "@/utils/stores/userStore";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 
 const menuItems = [
   { id: 0, title: "داشبورد", path: "/dashboard" },
@@ -10,7 +10,7 @@ const menuItems = [
 ];
 
 const DashboardMenu = () => {
-    const router = useRouter()
+    // const router = useRouter()
     const { resetAll } = userStore()
     const onExit = () => {
         resetAll()
