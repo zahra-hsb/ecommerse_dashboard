@@ -6,7 +6,7 @@ export const getSessionInfo = async (userId: string) => {
     await dbConnect();
 
     const sessionInfo = await Session.find({ user_id: userId });
-    console.log("session info => ", userId, sessionInfo);
+    console.log("session info => ", userId, Session);
 
     return {
       ok: true,
