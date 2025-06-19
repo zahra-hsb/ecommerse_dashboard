@@ -39,8 +39,22 @@ export async function createSession(payload: {
       path: "/",
       maxAge: 60 * 60 * 24 * 1000, // 1 day
     });
-    
+    return {
+      ok: true,
+      status: 200,
+      message: "شما با موفقیت وارد شدید",
+      data: {
+        id: payload._id,
+        username: payload.username,
+        email: payload.email,
+      },
+    };
   } catch (err) {
     console.log("error while create session ", err);
+    return {
+      ok: false,
+      status: 400,
+      message: "حطایی در ورود به پنل رخ داد",
+    };
   }
 }

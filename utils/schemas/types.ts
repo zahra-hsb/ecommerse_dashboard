@@ -6,6 +6,15 @@ export interface SubmitButtonType {
   icon?: ReactNode;
 }
 
+export interface UserInfoType {
+  _id: string;
+  username: string;
+  email: string;
+  fname: string;
+  lnamr: string;
+  tel: string;
+}
+
 export interface TextInputType {
   label?: string;
   id: "username" | "password";
