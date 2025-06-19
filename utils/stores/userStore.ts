@@ -5,6 +5,7 @@ import { persist } from "zustand/middleware";
 export interface UserStoreType {
   userInfo: UserInfoType;
   setUserInfo: (userInfo: UserInfoType) => void;
+  resetAll: () => void;
 }
 
 const userStore = create(
@@ -12,6 +13,10 @@ const userStore = create(
     (set) => ({
       userInfo: {} as UserInfoType,
       setUserInfo: (userInfo: UserInfoType) => set({ userInfo: userInfo }),
+      resetAll: () =>
+        set({
+          userInfo: {} as UserInfoType,
+        }),
     }),
     {
       name: "auth-storage",

@@ -1,5 +1,5 @@
 "use client"
-import { getSessionInfo } from "@/app/actions/auth/getSessionInfo";
+// import { getSessionInfo } from "@/app/actions/auth/getSessionInfo";
 import { userStore } from "@/utils/stores/userStore";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
