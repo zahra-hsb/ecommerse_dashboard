@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const menuItems = [
   { id: 0, title: "داشبورد", path: "/dashboard" },
-  { id: 1, title: "محصولات", path: "/#" },
+  { id: 1, title: "محصولات", path: "/products" },
 ];
 
 const DashboardMenu = () => {
