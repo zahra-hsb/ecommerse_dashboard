@@ -10,8 +10,8 @@ export interface UserInfoType {
   _id: string;
   username: string;
   email: string;
-  fname: string;
-  lnamr: string;
+  fName: string;
+  lNamr: string;
   tel: string;
 }
 

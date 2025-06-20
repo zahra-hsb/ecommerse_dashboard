@@ -42,7 +42,6 @@ const LoginForm = () => {
           console.log(JSON.parse(responseOfLogin?.data))
           setUserInfo(JSON.parse(responseOfLogin?.data));
           toast.success(responseOfCreateSession.message);
-          router.push("/dashboard");
         } else toast.error(responseOfCreateSession.message);
       } else toast.error(responseOfLogin.message);
     }
