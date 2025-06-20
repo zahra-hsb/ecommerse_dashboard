@@ -19,7 +19,7 @@ export interface UserInfoType {
 
 export interface TextInputType {
   label?: string;
-  id: "username" | "password";
+  id: "username" | "password" | "title";
   type: HTMLInputTypeAttribute;
   className?: string;
   placeholder?: string;
@@ -39,4 +39,17 @@ export type Inputs = {
 export interface LoginFormType {
   username: string;
   password: string;
+}
+
+export interface ProductType {
+  _id: string;
+  title: string;
+  description: string;
+  mainImage?: string;
+  category?: string;
+  properties?: {
+    color?: string;
+    brand?: string;
+    skin?: string;
+  };
 }
