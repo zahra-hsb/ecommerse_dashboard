@@ -14,7 +14,7 @@ const AuthProvider = ({ children }: { children: (Element | ReactNode)[] }) => {
     if (userInfo._id === undefined && pathname !== "/") {
       router.push("/");
     } else if (userInfo._id && pathname === "/") {
-      router.push("/dashboard");
+      router.push("/pannel/dashboard");
     }
     // getSessionInfo(userInfo._id);
   }, [userInfo, pathname, router]);

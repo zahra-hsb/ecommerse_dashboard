@@ -5,8 +5,8 @@ import Link from "next/link";
 // import { useRouter } from "next/navigation";
 
 const menuItems = [
-  { id: 0, title: "داشبورد", path: "/dashboard" },
-  { id: 1, title: "محصولات", path: "/products" },
+  { id: 0, title: "داشبورد", path: "/pannel/dashboard" },
+  { id: 1, title: "محصولات", path: "/pannel/products" },
 ];
 
 const DashboardMenu = () => {
