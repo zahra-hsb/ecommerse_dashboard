@@ -7,7 +7,6 @@ import { LoginFormType } from "@/utils/schemas/types";
 import { LoginSchema } from "@/utils/schemas/zodSchemas";
 import { userStore } from "@/utils/stores/userStore";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { FaUser } from "react-icons/fa6";
 import { RiLockPasswordFill } from "react-icons/ri";
@@ -20,7 +19,6 @@ const LoginForm = () => {
     // watch,
     // formState: { errors },
   } = useForm<LoginFormType>();
-  const router = useRouter();
   const { setUserInfo } = userStore();
   /**
    * call the login server action and go to dashboard
@@ -39,7 +37,6 @@ const LoginForm = () => {
           JSON.parse(responseOfLogin?.data ? responseOfLogin?.data : "")
         );
         if (responseOfCreateSession.ok) {
-          console.log(JSON.parse(responseOfLogin?.data))
           setUserInfo(JSON.parse(responseOfLogin?.data));
           toast.success(responseOfCreateSession.message);
         } else toast.error(responseOfCreateSession.message);

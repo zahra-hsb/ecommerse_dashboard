@@ -1,10 +1,11 @@
-
-
+import Products from "@/components/pages/products/Products";
 
 const productsPage = () => {
-    return (
-        <></>
-    )
-}
+  return (
+    <>
+      <Products />
+    </>
+  );
+};
 
-export default productsPage
+export default productsPage;
