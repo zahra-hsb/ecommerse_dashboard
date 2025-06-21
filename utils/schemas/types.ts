@@ -28,7 +28,7 @@ export interface TextInputType {
   name?: string;
   //   register: unknown;
   required: boolean;
-  register: UseFormRegister<LoginFormType>;
+  register: UseFormRegister<LoginFormType> | UseFormRegister<ProductType>;
 }
 
 export type Inputs = {
@@ -42,7 +42,7 @@ export interface LoginFormType {
 }
 
 export interface ProductType {
-  _id: string;
+  _id?: string;
   title: string;
   description: string;
   mainImage?: string;
@@ -52,4 +52,6 @@ export interface ProductType {
     brand?: string;
     skin?: string;
   };
+  createdAt: Date;
+  userId: string;
 }

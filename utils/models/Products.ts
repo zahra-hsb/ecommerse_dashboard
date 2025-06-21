@@ -10,25 +10,23 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
-  mainImage: {
-    type: String,
-    required: false,
-  },
-  category: {
-    type: String,
-  },
-  properties: {
-    color: String,
-    required: false,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  userId: {
-    type: String,
-    required: true,
-  },
+//   mainImage: {
+//     type: String,
+//   },
+//   category: {
+//     type: String,
+//   },
+//   properties: {
+//     color: String,
+//   },
+//   createdAt: {
+//     type: Date,
+//     default: Date.now,
+//   },
+//   userId: {
+//     type: String,
+//     required: true,
+//   },
 });
 
 const Product =
