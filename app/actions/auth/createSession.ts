@@ -4,7 +4,7 @@ import Session from "@/utils/models/Sessions";
 import { getDeviceInfo } from "../device/getDeviceInfo";
 import { sign } from "../jwt/jwt";
 import { cookies } from "next/headers";
-// import { encryptString } from "./encryptString";
+import { encryptString } from "./encryptString";
 
 export async function createSession(payload: {
   _id: string;
@@ -19,20 +19,22 @@ export async function createSession(payload: {
       username: payload.username,
       email: payload.email,
     });
-    // console.log('ghfdhgfhgf => ', await encryptString(jwt, 50))
+
+    const encryptedJWT = await encryptString(jwt, "jwt");
+
     await dbConnect();
-    const sessionData = await Session.insertOne({
+    await Session.insertOne({
       user_id: payload._id,
       expires_at: expiresAt,
       session_time: Date.now(),
       device_info: userAgent,
-      jwt,
-      //   jwt: await encryptString(jwt, 50)
+      // jwt,
+      jwt: encryptedJWT,
     });
-    console.log("session => ", sessionData);
+
     (await cookies()).set({
       name: "auth-token",
-      value: jwt, // encrypt
+      value: encryptedJWT ? encryptedJWT.toString() : jwt, // encrypt
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",

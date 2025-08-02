@@ -32,7 +32,7 @@ const LoginForm = () => {
       });
     } else {
       const responseOfLogin = await login(value);
-      if (responseOfLogin.data && responseOfLogin.ok) {
+      if (responseOfLogin?.data && responseOfLogin?.ok) {
         const responseOfCreateSession = await createSession(
           JSON.parse(responseOfLogin?.data ? responseOfLogin?.data : "")
         );
