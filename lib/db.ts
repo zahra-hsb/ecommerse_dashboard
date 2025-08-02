@@ -17,7 +17,7 @@ export async function dbConnect() {
   };
   if (process.env.NODE_ENV === "development") {
     if (uri)
-      mongoose.connect(uri, opts).then((mongoose) => {
+      await mongoose.connect(uri, opts).then((mongoose) => {
         return mongoose;
       }).catch(error => {
         console.log('Error while connection to mongo db!!! ', error)
