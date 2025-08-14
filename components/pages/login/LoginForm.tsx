@@ -19,7 +19,7 @@ const LoginForm = () => {
     // watch,
     // formState: { errors },
   } = useForm<LoginFormType>();
-  const { setUserInfo } = userStore();
+  const { setUserInfo, setToken } = userStore();
   /**
    * call the login server action and go to dashboard
    * @param value login payload
@@ -38,6 +38,11 @@ const LoginForm = () => {
         );
         if (responseOfCreateSession.ok) {
           setUserInfo(JSON.parse(responseOfLogin?.data));
+          setToken(
+            responseOfCreateSession?.data?.token
+              ? responseOfCreateSession?.data?.token
+              : ""
+          );
           toast.success(responseOfCreateSession.message);
         } else toast.error(responseOfCreateSession.message);
       } else toast.error(responseOfLogin.message);

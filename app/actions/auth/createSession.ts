@@ -3,8 +3,8 @@ import { dbConnect } from "@/lib/db";
 import Session from "@/utils/models/Sessions";
 import { getDeviceInfo } from "../device/getDeviceInfo";
 import { sign } from "../jwt/jwt";
-import { cookies } from "next/headers";
 import { encryptString } from "./encryptString";
+import { saveStrCookie } from "./saveStrCookie";
 
 export async function createSession(payload: {
   _id: string;
@@ -31,16 +31,15 @@ export async function createSession(payload: {
       // jwt,
       jwt: encryptedJWT,
     });
-
-    (await cookies()).set({
+    await saveStrCookie({
       name: "auth-token",
-      value: encryptedJWT ? encryptedJWT.toString() : jwt, // encrypt
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      str: encryptedJWT ? encryptedJWT.toString() : jwt,
+      isHttpOnly: true,
+      isSecure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       path: "/",
-      maxAge: 60 * 60 * 24 * 1000, // 1 day
-    });
+      maxAge: 60 * 60 * 24 * 1000,
+    })
     return {
       ok: true,
       status: 200,
@@ -49,6 +48,7 @@ export async function createSession(payload: {
         id: payload._id,
         username: payload.username,
         email: payload.email,
+        token: encryptedJWT ? encryptedJWT?.toString() : "",
       },
     };
   } catch (err) {
@@ -56,6 +56,7 @@ export async function createSession(payload: {
     return {
       ok: false,
       status: 400,
+      data: {},
       message: "حطایی در ورود به پنل رخ داد",
     };
   }

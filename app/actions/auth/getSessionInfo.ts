@@ -1,3 +1,4 @@
+"use server";
 import { dbConnect } from "@/lib/db";
 import Session from "@/utils/models/Sessions";
 
@@ -7,7 +8,8 @@ export const getSessionInfo = async (userId: string) => {
 
     const sessionInfo = await Session.find({ user_id: userId });
     console.log("session info => ", userId, Session);
-
+    // const res = await fetch("http://localhost:3000/login?user=zahra")
+    // console.log('res of login => ', await res.json())
     return {
       ok: true,
       status: 200,
