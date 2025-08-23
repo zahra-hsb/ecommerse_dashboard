@@ -14,15 +14,15 @@ const ProductForm = ({ id }: ProIdType) => {
   const today = new Date();
   const onSubmit = async (value: ProductType) => {
     if (id === "add") {
-      console.log("id => ", value, id);
-      //   await addProductServerAction(value);
       const addedProduct = await addProductServerAction({
         ...value,
         createdAt: today,
         userId,
       });
       if (addedProduct.ok) toast.success(addedProduct.message);
-      else toast.error(addedProduct.message);
+      else if (addedProduct.status === 403) {
+        toast.error(addedProduct.message);
+      } else toast.error(addedProduct.message);
     }
   };
   return (
