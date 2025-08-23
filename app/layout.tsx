@@ -3,6 +3,13 @@ import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import AuthProvider from "@/components/pages/AuthProvider";
 
+import localFont from 'next/font/local'
+
+const myFont = localFont({
+  src: './fonts/IRYekan.woff',
+})
+ 
+
 export const metadata: Metadata = {
   title: "Z DEV dashboard",
   description: "Ecommerce dashboard",
@@ -19,7 +26,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={`antialiased`}>
+      <body className={`antialiased ${myFont.className}`}>
         <AuthProvider>
           <ToastContainer />
           {children}
