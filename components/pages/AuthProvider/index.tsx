@@ -16,7 +16,7 @@ const AuthProvider = ({ children }: { children: (Element | ReactNode)[] }) => {
     if (!token && pathname !== "/") {
       router.push("/");
     } else if (token && pathname === "/") {
-      router.push("/pannel/dashboard");
+      router.push("/panel/dashboard");
     }
     getSessionInfo(userInfo._id);
     // if the token has expired then redirect

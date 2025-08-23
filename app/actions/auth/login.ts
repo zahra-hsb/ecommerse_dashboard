@@ -6,6 +6,14 @@ import { LoginFormType } from "@/utils/schemas/types";
 export async function login(props: LoginFormType) {
   try {
     await dbConnect();
+    const res = await fetch("http://localhost:3000/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(props),
+    });
+    console.log("res of login => ", await res.json())
     const foundUser = await User.findOne({ username: props.username });
     // TODO add JWT
     if (foundUser && props.password === foundUser.password) {

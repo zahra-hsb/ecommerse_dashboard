@@ -20,6 +20,7 @@ const userStore = create(
       resetAll: () =>
         set({
           userInfo: {} as UserInfoType,
+          token: "",
         }),
       token: "",
       setToken: (token) => set({ token }),

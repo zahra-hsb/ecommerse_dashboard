@@ -14,9 +14,10 @@ export async function addProductServerAction(values: ProductType) {
             message: "محصولی که میخواهید درج کنید از قبل وجود دارد"
         }
     } else {
-        console.log("pro => ", values);
+        // console.log("pro => ", values);
         const newProduct = await Product.insertOne({ ...values });
-        console.log("pro here => ", newProduct);
+        
+        // console.log("pro here => ", newProduct);
         return {
             ok: true,
             status: 200,

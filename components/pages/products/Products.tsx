@@ -11,7 +11,7 @@ const Products = () => {
         <Card className="!flex items-center !justify-between w-full">
           <h2 className="text-lg font-bold">محصولات</h2>
           <Button
-            onClick={() => router.push("/pannel/products/add")}
+            onClick={() => router.push("/panel/products/add")}
             className="!w-auto !mt-0"
           >
             افزودن محصول
