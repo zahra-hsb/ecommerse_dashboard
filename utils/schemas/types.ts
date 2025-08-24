@@ -19,7 +19,7 @@ export interface UserInfoType {
 
 export interface TextInputType {
   label?: string;
-  id: "username" | "password" | "title";
+  id: "username" | "password" | "title" | "price" | "count" | "description";
   type: HTMLInputTypeAttribute;
   className?: string;
   placeholder?: string;
@@ -28,7 +28,7 @@ export interface TextInputType {
   name?: string;
   //   register: unknown;
   required: boolean;
-  register: UseFormRegister<LoginFormType> | UseFormRegister<ProductType>;
+  register: UseFormRegister<ProductType> | UseFormRegister<LoginFormType>;
 }
 
 export type Inputs = {
@@ -48,10 +48,10 @@ export interface ProductType {
   mainImage?: string;
   category?: string;
   properties?: {
-    color?: string;
-    brand?: string;
-    skin?: string;
+    [key: string]: unknown;
   };
+  count: number;
+  price: number;
   createdAt: Date;
   userId: string;
 }

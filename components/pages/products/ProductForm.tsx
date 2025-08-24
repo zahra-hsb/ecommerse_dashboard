@@ -4,6 +4,7 @@ import SubmitButton from "@/components/globals/SubmitButton";
 import TextInput from "@/components/globals/TextInput";
 import { ProductType, ProIdType } from "@/utils/schemas/types";
 import { userStore } from "@/utils/stores/userStore";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
@@ -11,6 +12,7 @@ const ProductForm = ({ id }: ProIdType) => {
   const { register, handleSubmit } = useForm<ProductType>();
   const { userInfo } = userStore();
   const userId = userInfo._id;
+  const router = useRouter();
   const today = new Date();
   const onSubmit = async (value: ProductType) => {
     if (id === "add") {
@@ -19,8 +21,10 @@ const ProductForm = ({ id }: ProIdType) => {
         createdAt: today,
         userId,
       });
-      if (addedProduct.ok) toast.success(addedProduct.message);
-      else if (addedProduct.status === 403) {
+      if (addedProduct.ok) {
+        router.back();
+        toast.success(addedProduct.message);
+      } else if (addedProduct.status === 403) {
         toast.error(addedProduct.message);
       } else toast.error(addedProduct.message);
     }
@@ -36,6 +40,26 @@ const ProductForm = ({ id }: ProIdType) => {
         id="title"
         placeholder="عنوان محصول را اینجا وارد کنید..."
       />
+      <div className="flex gap-5">
+        <TextInput
+          required
+          type="number"
+          label="قیمت محصول"
+          register={register}
+          className="p-3 px-5"
+          id="price"
+          placeholder="قیمت"
+        />
+        <TextInput
+          required
+          type="number"
+          label="موجودی"
+          register={register}
+          className="p-3 px-5"
+          id="count"
+          placeholder="موجودی"
+        />
+      </div>
       <textarea
         {...register("description")}
         placeholder="توضیحات محصول خود را اینجا وارد کنید..."
