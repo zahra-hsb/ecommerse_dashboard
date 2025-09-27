@@ -55,3 +55,10 @@ export interface ProductType {
   createdAt: Date;
   userId: string;
 }
+
+export interface ProductsDataType {
+  products: ProductType[];
+  total: number;
+  page: number;
+  pageSize: number;
+}

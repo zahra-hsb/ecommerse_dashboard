@@ -9,10 +9,11 @@ export async function addProductServerAction(values: ProductType) {
   try {
     await dbConnect();
     const token = await getStrCookie({ name: "auth-token" });
-    const session = await Session.findOne({ user_id: values.userId });
+    const session = await Session.find({ user_id: values.userId });
     console.log(session);
-    if (token?.value && session) {
-      if (token?.value.toString() === session?.jwt) {
+    const sessionsCount = session.length;
+    if (token?.value && session && session.length > 0) {
+      if (token?.value.toString() === session[sessionsCount - 1]?.jwt) {
         const foundProduct = await Product.findOne({ title: values.title });
         if (foundProduct) {
           return {
