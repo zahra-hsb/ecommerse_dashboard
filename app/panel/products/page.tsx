@@ -4,13 +4,13 @@ import Products from "@/components/pages/products/Products";
 const productsPage = async () => {
   const productsData = await getAllProductsServerAction({
     currentPage: 1,
-    totalPostOnPage: 2,
+    totalProductsOnPage: 2
   });
 
-  console.log("pros => ", typeof productsData)
+  console.log("pros => ", JSON.parse(productsData));
   return (
     <>
-      <Products productsProps={JSON.parse(productsData)} />
+      <Products />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import { HTMLInputTypeAttribute, ReactNode } from "react";
+import { Dispatch, HTMLInputTypeAttribute, ReactNode, SetStateAction } from "react";
 import { UseFormRegister } from "react-hook-form";
 
 export type ProIdType = { id: "add" | string };
@@ -61,4 +61,11 @@ export interface ProductsDataType {
   total: number;
   page: number;
   pageSize: number;
+}
+
+export interface PaginationPropsType {
+  onNextPage: (setDisable: Dispatch<SetStateAction<boolean>>) => void;
+  onPrevPage: (setDisable: Dispatch<SetStateAction<boolean>>) => void;
+  nextPageIcon: ReactNode;
+  prevPageIcon: ReactNode;
 }
