@@ -11,9 +11,14 @@ const myFont = localFont({
  
 
 export const metadata: Metadata = {
-  title: "Z DEV dashboard",
-  description: "Ecommerce dashboard",
-  robots: "noindex,nofollow",
+  title: "LuxeAccess - Premium Accessories Shop",
+  description: "Discover premium accessories with AI-powered recommendations and glass morphism design",
+  robots: "index,follow",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default function RootLayout({

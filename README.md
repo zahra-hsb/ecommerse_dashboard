@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LuxeAccess - Premium Accessories Ecommerce Store
+
+A modern, luxury accessories ecommerce platform built with Next.js 15, MongoDB, and AI-powered shopping assistance.
 
 ## Getting Started
 
