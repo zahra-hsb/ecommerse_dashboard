@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Header from '@/components/store/Header';
 import Footer from '@/components/store/Footer';
 import ProductCard from '@/components/store/ProductCard';
-import { Loader, Filter } from 'lucide-react';
+import { Loader, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Product {
   _id: string;
@@ -19,11 +19,14 @@ interface Product {
   featured?: boolean;
 }
 
+const ITEMS_PER_PAGE = 9;
+
 export default function ShopPage() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState('featured');
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     // Mock product data
@@ -118,6 +121,11 @@ export default function ShopPage() {
 
   const categories = ['jewelry', 'watches', 'bags', 'sunglasses'];
 
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedCategory, sortBy]);
+
   let filteredProducts = products;
   if (selectedCategory) {
     filteredProducts = products.filter((p) => p.category === selectedCategory);
@@ -131,6 +139,12 @@ export default function ShopPage() {
   } else if (sortBy === 'rating') {
     filteredProducts = [...filteredProducts].sort((a, b) => (b.rating || 0) - (a.rating || 0));
   }
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
 
   return (
     <div className="min-h-screen flex flex-col bg-color-background">
@@ -197,23 +211,71 @@ export default function ShopPage() {
           </aside>
 
           {/* Products Grid */}
-          <div className="flex-1">
+          <div className="flex-1 flex flex-col">
             {loading ? (
               <div className="flex justify-center items-center py-12">
                 <Loader className="w-8 h-8 text-color-primary animate-spin" />
               </div>
             ) : filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProducts.map((product, index) => (
-                  <div
-                    key={product._id}
-                    className="animate-fade-in-up"
-                    style={{ animationDelay: `${index * 0.05}s` }}
-                  >
-                    <ProductCard product={product} />
+              <>
+                <div className="flex-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {paginatedProducts.map((product, index) => (
+                      <div
+                        key={product._id}
+                        className="animate-fade-in-up"
+                        style={{ animationDelay: `${index * 0.05}s` }}
+                      >
+                        <ProductCard product={product} />
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                </div>
+
+                {/* Pagination Controls */}
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center gap-4 mt-12 pt-8 border-t border-color-glass-border">
+                    <button
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="glass-lg rounded-lg p-3 text-color-foreground hover:bg-color-glass-border transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                      <span className="hidden sm:inline">Previous</span>
+                    </button>
+
+                    <div className="flex items-center gap-2">
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                        <button
+                          key={page}
+                          onClick={() => setCurrentPage(page)}
+                          className={`w-10 h-10 rounded-lg transition-all font-semibold ${
+                            currentPage === page
+                              ? 'bg-color-primary text-color-background'
+                              : 'glass hover:bg-color-glass-border text-color-foreground'
+                          }`}
+                        >
+                          {page}
+                        </button>
+                      ))}
+                    </div>
+
+                    <button
+                      onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      className="glass-lg rounded-lg p-3 text-color-foreground hover:bg-color-glass-border transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                    >
+                      <span className="hidden sm:inline">Next</span>
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </div>
+                )}
+
+                {/* Pagination Info */}
+                <div className="text-center mt-6 text-color-muted-foreground text-sm">
+                  Showing {startIndex + 1}-{Math.min(endIndex, filteredProducts.length)} of {filteredProducts.length} products
+                </div>
+              </>
             ) : (
               <div className="glass-lg rounded-xl p-12 text-center space-y-4">
                 <h3 className="text-xl font-bold">No products found</h3>
