@@ -6,6 +6,7 @@ import Hero from '@/components/store/Hero';
 import Footer from '@/components/store/Footer';
 import ProductCard from '@/components/store/ProductCard';
 import { Loader } from 'lucide-react';
+import Link from 'next/link';
 
 interface Product {
   _id: string;
@@ -86,7 +87,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-color-background">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
       <Hero />
 
@@ -94,21 +95,21 @@ export default function Home() {
       <section className="py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-12 animate-fade-in-up">
-            <h2 className="text-4xl md:text-5xl font-bold">Featured Collection</h2>
-            <p className="text-color-muted-foreground text-lg max-w-2xl mx-auto">
-              Discover our hand-picked selection of premium accessories
+            <h2 className="text-2xl md:text-4xl font-bold">کالکشن های زیبا</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              زیبایی را از اکسسوری های یوتاب به ارث ببرید
             </p>
           </div>
 
           {loading ? (
             <div className="flex justify-center items-center py-12">
-              <Loader className="w-8 h-8 text-color-primary animate-spin" />
+              <Loader className="w-8 h-8 text-primary animate-spin" />
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {featuredProducts.map((product, index) => (
-                <div 
-                  key={product._id} 
+                <div
+                  key={product._id}
                   className="animate-fade-in-up"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -119,12 +120,13 @@ export default function Home() {
           )}
 
           <div className="text-center mt-12">
-            <a
+            <Link
               href="/shop"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-color-primary text-color-background font-semibold rounded-lg hover:bg-color-primary-dark transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-background font-semibold rounded-lg hover:bg-primary-dark transition-all duration-300"
             >
-              View All Products →
-            </a>
+              همه محصولات
+              ◄
+            </Link>
           </div>
         </div>
       </section>
@@ -132,7 +134,7 @@ export default function Home() {
       {/* Categories Section */}
       <section className="py-20 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">Shop by Category</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">دسته بندی ها</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { name: 'Jewelry', icon: '💎' },
@@ -140,16 +142,16 @@ export default function Home() {
               { name: 'Bags', icon: '👜' },
               { name: 'Sunglasses', icon: '🕶️' },
             ].map((category) => (
-              <a
+              <Link
                 key={category.name}
                 href={`/shop?category=${category.name.toLowerCase()}`}
-                className="group glass-lg rounded-xl p-8 text-center hover:border-color-primary transition-all duration-300 hover:scale-105"
+                className="group glass-lg rounded-xl p-8 text-center hover:border-primary transition-all duration-300 hover:scale-105"
               >
                 <div className="text-5xl mb-4">{category.icon}</div>
-                <h3 className="text-xl font-semibold group-hover:text-color-primary transition-colors">
+                <h3 className="text-xl font-semibold group-hover:text-primary transition-colors">
                   {category.name}
                 </h3>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -159,15 +161,16 @@ export default function Home() {
       <section className="py-20 relative z-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="glass-lg rounded-2xl p-12 text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">Need Help Finding the Perfect Item?</h2>
-            <p className="text-color-muted-foreground text-lg">
-              Chat with our AI assistant for personalized recommendations
+            <h2 className="text-2xl md:text-3xl font-bold">نمیدونی برای لباسات چه اکسسوری هایی رو انتخاب کنی؟</h2>
+            <p className="text-muted-foreground text-lg">
+              از هوشا بپرس!
             </p>
             <a
               href="/chat"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-color-primary text-color-background font-semibold rounded-lg hover:bg-color-primary-dark transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-primary text-background font-semibold rounded-lg hover:bg-primary-dark transition-all duration-300"
             >
-              Start AI Chat →
+              گفت و گو با هوشا
+              ◄
             </a>
           </div>
         </div>

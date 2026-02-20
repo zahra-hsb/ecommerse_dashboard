@@ -6,14 +6,14 @@ import AuthProvider from "@/components/pages/AuthProvider";
 import localFont from 'next/font/local'
 
 const myFont = localFont({
-  src: './fonts/IRYekan.woff',
+  src: './fonts/Vazirmatn.ttf',
 })
  
 
 export const metadata: Metadata = {
-  title: "LuxeAccess - Premium Accessories Shop",
-  description: "Discover premium accessories with AI-powered recommendations and glass morphism design",
-  robots: "index,follow",
+  title: "اکسسوری یوتاب | فروشگاه اینترنتی اکسسوری",
+  description: "فروشگاه اینترنتی اکسسوری یوتاب، ارائه دهنده انواع زیورآلات، ساعت‌ها و عینک‌های آفتابی با کیفیت بالا و طراحی‌های منحصر به فرد. خرید آسان و سریع با ارسال رایگان در سراسر کشور.",
+  robots: "index, follow",
   viewport: {
     width: "device-width",
     initialScale: 1,
@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="rtl">
+    <html lang="fa" dir="rtl">
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>

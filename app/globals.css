@@ -2,8 +2,8 @@
 
 :root {
   /* Primary Brand Colors */
-  --color-primary: #d4af37;
-  --color-primary-dark: #b8860b;
+  --color-primary: #f690f1;
+  --color-primary-dark: #7a29a3;
   --color-primary-light: #f5e6c8;
   
   /* Neutral Colors */
@@ -43,12 +43,6 @@
   --color-success: var(--color-success);
   --color-danger: var(--color-danger);
   --color-warning: var(--color-warning);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 html {
