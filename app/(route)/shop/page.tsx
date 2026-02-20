@@ -24,6 +24,9 @@ export default function ShopPage() {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState('featured');
+  const [input, setInput] = useState("");
+
+
 
   useEffect(() => {
     // Mock product data
@@ -111,10 +114,15 @@ export default function ShopPage() {
         reviews: 64,
       },
     ];
-
-    setProducts(mockProducts);
+    if (input) {
+      setTimeout(() => {
+        setProducts(products.filter(product => product.title.toLowerCase().includes(input)))
+      }, 2000)
+    } else if (input === "") {
+      setProducts(mockProducts);
+    }
     setLoading(false);
-  }, []);
+  }, [input]);
 
   const categories = ['jewelry', 'watches', 'bags', 'sunglasses'];
 
@@ -133,45 +141,51 @@ export default function ShopPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-color-background">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 py-12">
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold mb-2">Shop Our Collection</h1>
-          <p className="text-color-muted-foreground">Browse our curated selection of premium accessories</p>
+        <div className="mb-12 flex flex-col items-center justify-center w-full">
+          <h1 className="text-4xl font-bold mb-2 ">فروشگاه</h1>
+          <p className="text-muted-foreground ">هر محصولی که میخوای رو اینجا پیدا کن</p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar Filters */}
-          <aside className="lg:w-64 flex-shrink-0">
+          <aside className="lg:w-64 shrink-0">
             <div className="space-y-6">
+              <input
+                value={input}
+                placeholder="جستجو..."
+                type='search'
+                onChange={(e) => setInput(e.target.value)}
+                disabled={loading}
+                className="flex-1 w-full glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-color-primary transition-all disabled:opacity-50"
+              />
               {/* Categories */}
               <div className="glass-lg rounded-xl p-6">
                 <div className="flex items-center gap-2 mb-4">
-                  <Filter className="w-5 h-5 text-color-primary" />
-                  <h3 className="font-bold text-lg">Categories</h3>
+                  <Filter className="w-5 h-5 text-primary" />
+                  <h3 className="font-bold text-lg">دسته بندی ها</h3>
                 </div>
                 <div className="space-y-2">
                   <button
                     onClick={() => setSelectedCategory(null)}
-                    className={`w-full text-left px-4 py-2 rounded-lg transition-all ${
-                      selectedCategory === null
-                        ? 'bg-color-primary text-color-background'
-                        : 'glass hover:bg-color-glass-border'
-                    }`}
+                    className={`w-full text-left px-4 py-2 rounded-lg transition-all ${selectedCategory === null
+                      ? 'bg-primary text-background'
+                      : 'glass hover:bg-glass-border'
+                      }`}
                   >
-                    All Products
+                    همه محصولات
                   </button>
                   {categories.map((cat) => (
                     <button
                       key={cat}
                       onClick={() => setSelectedCategory(cat)}
-                      className={`w-full text-left px-4 py-2 rounded-lg transition-all capitalize ${
-                        selectedCategory === cat
-                          ? 'bg-color-primary text-color-background'
-                          : 'glass hover:bg-color-glass-border'
-                      }`}
+                      className={`w-full text-left px-4 py-2 rounded-lg transition-all capitalize ${selectedCategory === cat
+                        ? 'bg-primary text-background'
+                        : 'glass hover:bg-glass-border'
+                        }`}
                     >
                       {cat}
                     </button>
@@ -181,11 +195,11 @@ export default function ShopPage() {
 
               {/* Sort */}
               <div className="glass-lg rounded-xl p-6">
-                <h3 className="font-bold text-lg mb-4">Sort By</h3>
+                <h3 className="font-bold text-lg mb-4">مرتب سازی براساس</h3>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
-                  className="w-full glass rounded-lg px-4 py-2 text-color-foreground focus:outline-none focus:ring-2 focus:ring-color-primary"
+                  className="w-full glass rounded-lg px-4 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                   <option value="featured">Featured</option>
                   <option value="price-low">Price: Low to High</option>
@@ -200,7 +214,7 @@ export default function ShopPage() {
           <div className="flex-1">
             {loading ? (
               <div className="flex justify-center items-center py-12">
-                <Loader className="w-8 h-8 text-color-primary animate-spin" />
+                <Loader className="w-8 h-8 text-primary animate-spin" />
               </div>
             ) : filteredProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -217,7 +231,7 @@ export default function ShopPage() {
             ) : (
               <div className="glass-lg rounded-xl p-12 text-center space-y-4">
                 <h3 className="text-xl font-bold">No products found</h3>
-                <p className="text-color-muted-foreground">Try adjusting your filters</p>
+                <p className="text-muted-foreground">Try adjusting your filters</p>
               </div>
             )}
           </div>

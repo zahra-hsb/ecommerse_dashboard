@@ -1,15 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowLeft, Sparkles } from 'lucide-react';
 
 export default function Hero() {
   return (
     <section className="min-h-screen relative overflow-hidden pt-20">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-pulse"></div>
-        <div className="absolute bottom-20 left-10 w-72 h-72 bg-accent-light/20 rounded-full mix-blend-screen filter blur-3xl opacity-50 animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-20 right-10 w-50 h-50 bg-primary/30 rounded-full mix-blend-screen filter blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-10 w-72 h-72 bg-accent-light/20 rounded-full mix-blend-screen filter blur-3xl opacity-80 animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
@@ -18,17 +18,17 @@ export default function Hero() {
           <div className="space-y-8 animate-fade-in-up">
             <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 w-fit">
               <Sparkles className="w-4 h-4 text-primary" />
-              <span className="text-sm text-primary font-semibold">Premium Collection 2025</span>
+              <span className="text-sm text-primary font-semibold">کالکشن های 1405</span>
             </div>
 
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight text-balance">
-              <span className="block">Elevate Your</span>
-              <span className="gradient-text">Style</span>
-              <span className="block">with Premium Accessories</span>
+              <span className="block">استایل خودت رو با</span>
+              <span className="gradient-text text-6xl lg:text-7xl">یوتاب</span>
+              <span className="block">شگفت انگیز و جذاب کن</span>
             </h1>
 
             <p className="text-xl text-muted-foreground max-w-lg leading-relaxed">
-              Discover our curated collection of luxury accessories. From elegant jewelry to timeless watches, find the perfect piece to express your unique style.
+              مجموعه منتخب ما از اکسسوری‌های لوکس را کشف کنید. از جواهرات زیبا گرفته تا ساعت‌های مچی ماندگار، قطعه‌ای بی‌نظیر برای بیان سبک منحصر به فرد خود پیدا کنید.
             </p>
 
             {/* CTA Buttons */}
@@ -37,15 +37,15 @@ export default function Hero() {
                 href="/shop"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-background font-semibold rounded-lg hover:bg-primary-dark transition-all duration-300 group"
               >
-                Shop Now
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                فروشگاه
+                <ArrowLeft className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 href="/chat"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 glass rounded-lg font-semibold hover:bg-glass-border transition-all duration-300"
               >
                 <Sparkles className="w-5 h-5" />
-                Ask AI Assistant
+                از هوشا بپرس
               </Link>
             </div>
 
@@ -53,15 +53,15 @@ export default function Hero() {
             <div className="grid grid-cols-3 gap-4 pt-8 border-t border-glass-border">
               <div>
                 <p className="text-2xl font-bold gradient-text">500+</p>
-                <p className="text-sm text-muted">Premium Items</p>
+                <p className="text-sm text-muted">موردهای جذاب</p>
               </div>
               <div>
                 <p className="text-2xl font-bold gradient-text">4.9★</p>
-                <p className="text-sm text-muted">Customer Rating</p>
+                <p className="text-sm text-muted">نظرات مشتریان</p>
               </div>
               <div>
                 <p className="text-2xl font-bold gradient-text">24h</p>
-                <p className="text-sm text-muted">Fast Shipping</p>
+                <p className="text-sm text-muted">ارسال سریع</p>
               </div>
             </div>
           </div>
