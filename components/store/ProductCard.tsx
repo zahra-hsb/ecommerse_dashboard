@@ -68,7 +68,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
       {/* Product Info */}
       <div className="space-y-2">
-        <Link href={`/product/${product._id}`} className="hover:text-primary transition-colors">
+        <Link href={`/shop/product/${product._id}`} className="hover:text-primary transition-colors">
           <h3 className="text-sm font-semibold line-clamp-2 text-foreground">{product.title}</h3>
         </Link>
 

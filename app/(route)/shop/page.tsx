@@ -150,7 +150,7 @@ export default function ShopPage() {
 
   const categories = ['jewelry', 'watches', 'bags', 'sunglasses'];
   const urlParamCategory = queryParams.get("category")
-  console.log(urlParamCategory)
+
   useEffect(() => {
     setSelectedCategory(urlParamCategory)
   }, [urlParamCategory])
@@ -163,11 +163,10 @@ export default function ShopPage() {
   let filteredProducts = products;
   if (selectedCategory) {
     filteredProducts = products.filter((p) => {
-      console.info(p.category, selectedCategory)
       return p.category.toLowerCase() === selectedCategory.toLowerCase()
     });
   }
-  console.log(filteredProducts, selectedCategory)
+
   // Sort products
   if (sortBy === 'price-low') {
     filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
