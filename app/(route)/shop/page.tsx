@@ -5,6 +5,7 @@ import Header from '@/components/store/Header';
 import Footer from '@/components/store/Footer';
 import ProductCard from '@/components/store/ProductCard';
 import { Loader, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
+import { useSearchParams } from 'next/navigation';
 
 interface Product {
   _id: string;
@@ -28,7 +29,7 @@ export default function ShopPage() {
   const [sortBy, setSortBy] = useState('featured');
   const [input, setInput] = useState("");
 
-
+  const queryParams = useSearchParams()
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -148,6 +149,11 @@ export default function ShopPage() {
   }, [input]);
 
   const categories = ['jewelry', 'watches', 'bags', 'sunglasses'];
+  const urlParamCategory = queryParams.get("category")
+  console.log(urlParamCategory)
+  useEffect(() => {
+    setSelectedCategory(urlParamCategory)
+  }, [urlParamCategory])
 
   // Reset to first page when filters change
   useEffect(() => {
@@ -156,9 +162,9 @@ export default function ShopPage() {
 
   let filteredProducts = products;
   if (selectedCategory) {
-    filteredProducts = products.filter((p) => p.category === selectedCategory);
+    filteredProducts = products.filter((p) => p.category.toLowerCase() === selectedCategory.toLowerCase());
   }
-
+  console.log(filteredProducts, selectedCategory)
   // Sort products
   if (sortBy === 'price-low') {
     filteredProducts = [...filteredProducts].sort((a, b) => a.price - b.price);
@@ -275,7 +281,7 @@ export default function ShopPage() {
                       className="glass-lg rounded-lg p-3 text-foreground hover:bg-glass-border transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                     >
                       <ChevronRight className="w-5 h-5" />
-                      <span className="hidden sm:inline">Previous</span>
+                      <span className="hidden sm:inline">قبلی</span>
                     </button>
 
                     <div className="flex items-center gap-2">
@@ -283,11 +289,10 @@ export default function ShopPage() {
                         <button
                           key={page}
                           onClick={() => setCurrentPage(page)}
-                          className={`w-10 h-10 rounded-lg transition-all font-semibold ${
-                            currentPage === page
+                          className={`w-10 h-10 rounded-lg transition-all font-semibold ${currentPage === page
                               ? 'bg-primary text-background'
                               : 'glass hover:bg-glass-border text-foreground'
-                          }`}
+                            }`}
                         >
                           {page}
                         </button>
@@ -299,7 +304,7 @@ export default function ShopPage() {
                       disabled={currentPage === totalPages}
                       className="glass-lg rounded-lg p-3 text-foreground hover:bg-glass-border transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                     >
-                      <span className="hidden sm:inline">Next</span>
+                      <span className="hidden sm:inline">بعدی</span>
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                   </div>
@@ -307,7 +312,7 @@ export default function ShopPage() {
 
                 {/* Pagination Info */}
                 <div className="text-center mt-6 text-muted-foreground text-sm">
-                  Showing {startIndex + 1}-{Math.min(endIndex, filteredProducts.length)} of {filteredProducts.length} products
+                  نمایش {startIndex + 1}-{Math.min(endIndex, filteredProducts.length)} از {filteredProducts.length} محصول
                 </div>
               </>
             ) : (

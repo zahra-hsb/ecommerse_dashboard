@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { toast } from 'react-toastify';
 
-const mockProducts: Record<string, any> = {
+const mockProducts: Record<string, unknown> = {
   '1': {
     id: '1',
     title: 'Elegant Gold Bracelet',
@@ -65,45 +65,45 @@ export default function ProductPage() {
 
   const handleAddToCart = () => {
     addItem({
-      id: product.id,
-      title: product.title,
-      price: product.price,
+      id: product?.id,
+      title: product?.title,
+      price: product?.price,
       quantity,
     });
     toast.success('Added to cart!');
   };
 
-  const discount = product.originalPrice
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+  const discount = product?.originalPrice
+    ? Math.round(((product?.originalPrice - product?.price) / product?.originalPrice) * 100)
     : 0;
 
   return (
-    <div className="min-h-screen flex flex-col bg-color-background">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-12">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 mb-8 text-sm text-color-muted-foreground">
-          <Link href="/shop" className="hover:text-color-primary transition-colors">
+        <div className="flex items-center gap-2 mb-8 text-sm text-muted-foreground">
+          <Link href="/shop" className="hover:text-primary transition-colors">
             Shop
           </Link>
           <span>/</span>
           <Link
-            href={`/shop?category=${product.category}`}
-            className="hover:text-color-primary transition-colors capitalize"
+            href={`/shop?category=${product?.category}`}
+            className="hover:text-primary transition-colors capitalize"
           >
-            {product.category}
+            {product?.category}
           </Link>
           <span>/</span>
-          <span className="text-color-foreground">{product.title}</span>
+          <span className="text-foreground">{product?.title}</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Product Image */}
-          <div className="glass-lg rounded-2xl p-8 flex items-center justify-center h-96 lg:h-full min-h-96 bg-gradient-to-br from-color-primary/20 to-color-accent/20">
+          <div className="glass-lg rounded-2xl p-8 flex items-center justify-center h-96 lg:h-full min-h-96 bg-linear-to-br from-primary/20 to-accent/20">
             <div className="text-center space-y-4">
               <div className="text-8xl">💍</div>
-              <p className="text-color-muted">{product.title}</p>
+              <p className="text-muted">{product?.title}</p>
             </div>
           </div>
 
@@ -113,28 +113,28 @@ export default function ProductPage() {
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div>
-                  <h1 className="text-3xl lg:text-4xl font-bold">{product.title}</h1>
+                  <h1 className="text-3xl lg:text-4xl font-bold">{product?.title}</h1>
                   <div className="flex items-center gap-2 mt-2">
-                    <div className="flex text-color-primary">
+                    <div className="flex text-primary">
                       {[...Array(5)].map((_, i) => (
                         <Star
                           key={i}
-                          className={`w-4 h-4 ${i < Math.round(product.rating) ? 'fill-current' : ''}`}
+                          className={`w-4 h-4 ${i < Math.round(product?.rating) ? 'fill-current' : ''}`}
                         />
                       ))}
                     </div>
-                    <span className="text-sm text-color-muted">
-                      {product.rating} ({product.reviews} reviews)
+                    <span className="text-sm text-muted">
+                      {product?.rating} ({product?.reviews} reviews)
                     </span>
                   </div>
                 </div>
                 <button
                   onClick={() => setIsFavorite(!isFavorite)}
-                  className="p-3 glass rounded-lg hover:bg-color-glass-border transition-all"
+                  className="p-3 glass rounded-lg hover:bg-glass-border transition-all"
                 >
                   <Heart
                     className={`w-6 h-6 ${
-                      isFavorite ? 'fill-color-danger text-color-danger' : 'text-color-muted-foreground'
+                      isFavorite ? 'fill-danger text-danger' : 'text-muted-foreground'
                     }`}
                   />
                 </button>
@@ -144,41 +144,41 @@ export default function ProductPage() {
             {/* Price */}
             <div className="glass-lg rounded-xl p-6 space-y-2">
               <div className="flex items-center gap-4">
-                <span className="text-4xl font-bold gradient-text">${product.price.toFixed(2)}</span>
-                {product.originalPrice && (
+                <span className="text-4xl font-bold gradient-text">${product?.price.toFixed(2)}</span>
+                {product?.originalPrice && (
                   <>
-                    <span className="text-lg text-color-muted line-through">${product.originalPrice.toFixed(2)}</span>
-                    <span className="px-3 py-1 bg-color-danger text-white rounded-full text-sm font-bold">
+                    <span className="text-lg text-muted line-through">${product?.originalPrice?.toFixed(2)}</span>
+                    <span className="px-3 py-1 bg-danger text-white rounded-full text-sm font-bold">
                       -{discount}%
                     </span>
                   </>
                 )}
               </div>
-              <p className="text-color-success text-sm font-semibold">
-                {product.inStock ? '✓ In Stock' : 'Out of Stock'}
+              <p className="text-success text-sm font-semibold">
+                {product?.inStock ? '✓ In Stock' : 'Out of Stock'}
               </p>
             </div>
 
             {/* Description */}
             <div>
-              <p className="text-color-foreground text-lg leading-relaxed">{product.fullDescription}</p>
+              <p className="text-foreground text-lg leading-relaxed">{product?.fullDescription}</p>
             </div>
 
             {/* Quantity & Add to Cart */}
             <div className="space-y-4">
               <div className="glass rounded-lg p-4 flex items-center gap-4">
-                <span className="text-color-muted-foreground">Quantity:</span>
+                <span className="text-muted-foreground">Quantity:</span>
                 <div className="flex items-center gap-3 ml-auto">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-8 h-8 glass rounded hover:bg-color-glass-border transition-all flex items-center justify-center"
+                    className="w-8 h-8 glass rounded hover:bg-glass-border transition-all flex items-center justify-center"
                   >
                     −
                   </button>
                   <span className="w-8 text-center font-bold">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-8 h-8 glass rounded hover:bg-color-glass-border transition-all flex items-center justify-center"
+                    className="w-8 h-8 glass rounded hover:bg-glass-border transition-all flex items-center justify-center"
                   >
                     +
                   </button>
@@ -187,14 +187,14 @@ export default function ProductPage() {
 
               <button
                 onClick={handleAddToCart}
-                disabled={!product.inStock}
-                className="w-full py-4 bg-color-primary text-color-background font-bold rounded-lg hover:bg-color-primary-dark transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-lg"
+                disabled={!product?.inStock}
+                className="w-full py-4 bg-primary text-background font-bold rounded-lg hover:bg-primary-dark transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-lg"
               >
                 <ShoppingCart className="w-5 h-5" />
                 Add to Cart
               </button>
 
-              <button className="w-full py-3 glass rounded-lg hover:bg-color-glass-border transition-all flex items-center justify-center gap-2 font-semibold">
+              <button className="w-full py-3 glass rounded-lg hover:bg-glass-border transition-all flex items-center justify-center gap-2 font-semibold">
                 <Share2 className="w-4 h-4" />
                 Share
               </button>
@@ -203,19 +203,19 @@ export default function ProductPage() {
             {/* Features */}
             <div className="grid grid-cols-3 gap-4 glass-lg rounded-xl p-6">
               <div className="text-center">
-                <Truck className="w-6 h-6 text-color-primary mx-auto mb-2" />
+                <Truck className="w-6 h-6 text-primary mx-auto mb-2" />
                 <p className="text-sm font-semibold">Free Shipping</p>
-                <p className="text-xs text-color-muted">On orders over $100</p>
+                <p className="text-xs text-muted">On orders over $100</p>
               </div>
               <div className="text-center">
-                <Shield className="w-6 h-6 text-color-primary mx-auto mb-2" />
+                <Shield className="w-6 h-6 text-primary mx-auto mb-2" />
                 <p className="text-sm font-semibold">2 Year Warranty</p>
-                <p className="text-xs text-color-muted">Full protection</p>
+                <p className="text-xs text-muted">Full protection</p>
               </div>
               <div className="text-center">
-                <RotateCcw className="w-6 h-6 text-color-primary mx-auto mb-2" />
+                <RotateCcw className="w-6 h-6 text-primary mx-auto mb-2" />
                 <p className="text-sm font-semibold">30-Day Returns</p>
-                <p className="text-xs text-color-muted">No questions asked</p>
+                <p className="text-xs text-muted">No questions asked</p>
               </div>
             </div>
           </div>
@@ -225,9 +225,9 @@ export default function ProductPage() {
         <div className="mt-16 glass-lg rounded-xl p-8">
           <h2 className="text-2xl font-bold mb-6">Specifications</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {Object.entries(product.specifications || {}).map(([key, value]) => (
-              <div key={key} className="flex justify-between items-center pb-4 border-b border-color-glass-border last:border-0">
-                <span className="text-color-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
+            {Object.entries(product?.specifications || {}).map(([key, value]) => (
+              <div key={key} className="flex justify-between items-center pb-4 border-b border-glass-border last:border-0">
+                <span className="text-muted-foreground capitalize">{key.replace(/([A-Z])/g, ' $1')}:</span>
                 <span className="font-semibold">{value as string}</span>
               </div>
             ))}
@@ -242,7 +242,7 @@ export default function ProductPage() {
               <div key={i} className="glass-lg rounded-lg p-4 h-64 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-4xl mb-2">💎</div>
-                  <p className="text-sm text-color-muted">Similar Product</p>
+                  <p className="text-sm text-muted">Similar Product</p>
                 </div>
               </div>
             ))}

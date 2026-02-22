@@ -26,7 +26,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="group h-full">
-      <Link href={`/product/${product._id}`}>
+      <Link href={`/shop/product/${product._id}`}>
         <div className="relative overflow-hidden rounded-xl glass-lg h-80 mb-4 cursor-pointer transition-transform duration-300 hover:scale-105">
           {/* Product Image */}
           <div className="relative w-full h-full bg-linear-to-br from-primary/20 to-accent/20 flex items-center justify-center">
