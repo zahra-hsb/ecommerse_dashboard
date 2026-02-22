@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { ShoppingBag, Search, Menu, X, MessageCircle } from 'lucide-react';
 import SiteLogo from '../globals/SiteLogo';
 import Navigation from './Navigation';
+import { usePathname } from 'next/navigation';
 
 const mobileMenuItems = [
   { name: "فروشگاه", href: "/shop" },
@@ -15,9 +16,9 @@ const mobileMenuItems = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const pathname = usePathname();
   return (
-    <header className="sticky top-0 z-50 glass border-b border-glass-border">
+    <header className="sticky top-0 z-50 glass border-b border-glass-border backdrop-blur-3xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           {/* Logo */}
@@ -62,7 +63,7 @@ export default function Header() {
         {isOpen && (
           <nav className="md:hidden pb-4 space-y-2 border-t border-glass-border pt-4">
             {mobileMenuItems.map(mobileItem => (
-              <Link key={mobileItem.name} href={mobileItem.href} className="block text-muted-foreground hover:text-primary py-2">
+              <Link key={mobileItem.name} href={mobileItem.href} className={`${pathname === mobileItem.href ? "text-primary" : ""} block text-muted-foreground hover:text-primary py-2 duration-300`}>
                 {mobileItem.name}
               </Link>
             ))}

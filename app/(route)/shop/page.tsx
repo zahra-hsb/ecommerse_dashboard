@@ -116,6 +116,26 @@ export default function ShopPage() {
         rating: 4.5,
         reviews: 64,
       },
+      {
+        _id: '9',
+        title: 'Crossbody Bag',
+        description: 'Compact leather crossbody bag',
+        price: 349,
+        originalPrice: 499,
+        category: 'bags',
+        rating: 4.5,
+        reviews: 64,
+      },
+      {
+        _id: '10',
+        title: 'Crossbody Bag',
+        description: 'Compact leather crossbody bag',
+        price: 349,
+        originalPrice: 499,
+        category: 'bags',
+        rating: 4.5,
+        reviews: 64,
+      },
     ];
     if (input) {
       setTimeout(() => {
@@ -174,7 +194,7 @@ export default function ShopPage() {
                 type='search'
                 onChange={(e) => setInput(e.target.value)}
                 disabled={loading}
-                className="flex-1 w-full glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-color-primary transition-all disabled:opacity-50"
+                className="flex-1 w-full glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary transition-all disabled:opacity-50"
               />
               {/* Categories */}
               <div className="glass-lg rounded-xl p-6">
@@ -248,13 +268,13 @@ export default function ShopPage() {
 
                 {/* Pagination Controls */}
                 {totalPages > 1 && (
-                  <div className="flex items-center justify-center gap-4 mt-12 pt-8 border-t border-color-glass-border">
+                  <div className="flex items-center justify-center gap-4 mt-12 pt-8 border-t border-glass-border">
                     <button
                       onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                       disabled={currentPage === 1}
-                      className="glass-lg rounded-lg p-3 text-color-foreground hover:bg-color-glass-border transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                      className="glass-lg rounded-lg p-3 text-foreground hover:bg-glass-border transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                     >
-                      <ChevronLeft className="w-5 h-5" />
+                      <ChevronRight className="w-5 h-5" />
                       <span className="hidden sm:inline">Previous</span>
                     </button>
 
@@ -265,8 +285,8 @@ export default function ShopPage() {
                           onClick={() => setCurrentPage(page)}
                           className={`w-10 h-10 rounded-lg transition-all font-semibold ${
                             currentPage === page
-                              ? 'bg-color-primary text-color-background'
-                              : 'glass hover:bg-color-glass-border text-color-foreground'
+                              ? 'bg-primary text-background'
+                              : 'glass hover:bg-glass-border text-foreground'
                           }`}
                         >
                           {page}
@@ -277,16 +297,16 @@ export default function ShopPage() {
                     <button
                       onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                       disabled={currentPage === totalPages}
-                      className="glass-lg rounded-lg p-3 text-color-foreground hover:bg-color-glass-border transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                      className="glass-lg rounded-lg p-3 text-foreground hover:bg-glass-border transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                     >
                       <span className="hidden sm:inline">Next</span>
-                      <ChevronRight className="w-5 h-5" />
+                      <ChevronLeft className="w-5 h-5" />
                     </button>
                   </div>
                 )}
 
                 {/* Pagination Info */}
-                <div className="text-center mt-6 text-color-muted-foreground text-sm">
+                <div className="text-center mt-6 text-muted-foreground text-sm">
                   Showing {startIndex + 1}-{Math.min(endIndex, filteredProducts.length)} of {filteredProducts.length} products
                 </div>
               </>
