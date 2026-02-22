@@ -5,7 +5,7 @@ import Header from '@/components/store/Header';
 import Footer from '@/components/store/Footer';
 import ProductCard from '@/components/store/ProductCard';
 import { Loader, Filter, ChevronLeft, ChevronRight } from 'lucide-react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface Product {
   _id: string;
@@ -28,7 +28,7 @@ export default function ShopPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState('featured');
   const [input, setInput] = useState("");
-
+  const router = useRouter()
   const queryParams = useSearchParams()
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -146,7 +146,7 @@ export default function ShopPage() {
       setProducts(mockProducts);
     }
     setLoading(false);
-  }, [input]);
+  }, [input, selectedCategory]);
 
   const categories = ['jewelry', 'watches', 'bags', 'sunglasses'];
   const urlParamCategory = queryParams.get("category")
@@ -162,7 +162,10 @@ export default function ShopPage() {
 
   let filteredProducts = products;
   if (selectedCategory) {
-    filteredProducts = products.filter((p) => p.category.toLowerCase() === selectedCategory.toLowerCase());
+    filteredProducts = products.filter((p) => {
+      console.info(p.category, selectedCategory)
+      return p.category.toLowerCase() === selectedCategory.toLowerCase()
+    });
   }
   console.log(filteredProducts, selectedCategory)
   // Sort products
@@ -210,7 +213,9 @@ export default function ShopPage() {
                 </div>
                 <div className="space-y-2">
                   <button
-                    onClick={() => setSelectedCategory(null)}
+                    onClick={() => {
+                      router.replace("/shop") 
+                      setSelectedCategory(null)}}
                     className={`w-full text-left px-4 py-2 rounded-lg transition-all ${selectedCategory === null
                       ? 'bg-primary text-background'
                       : 'glass hover:bg-glass-border'
@@ -221,7 +226,10 @@ export default function ShopPage() {
                   {categories.map((cat) => (
                     <button
                       key={cat}
-                      onClick={() => setSelectedCategory(cat)}
+                      onClick={() => {
+                        router.replace("/shop?category=" + cat)
+                        setSelectedCategory(cat)
+                      }}
                       className={`w-full text-left px-4 py-2 rounded-lg transition-all capitalize ${selectedCategory === cat
                         ? 'bg-primary text-background'
                         : 'glass hover:bg-glass-border'
@@ -290,8 +298,8 @@ export default function ShopPage() {
                           key={page}
                           onClick={() => setCurrentPage(page)}
                           className={`w-10 h-10 rounded-lg transition-all font-semibold ${currentPage === page
-                              ? 'bg-primary text-background'
-                              : 'glass hover:bg-glass-border text-foreground'
+                            ? 'bg-primary text-background'
+                            : 'glass hover:bg-glass-border text-foreground'
                             }`}
                         >
                           {page}
