@@ -2,8 +2,9 @@
 
 import { useTheme } from '@/context/ThemeContext';
 import { Moon, Sun } from 'lucide-react';
+import { Suspense } from 'react';
 
-export default function ThemeToggle() {
+function ThemeToggleButton() {
   const { theme, toggleTheme } = useTheme();
 
   return (
@@ -19,5 +20,13 @@ export default function ThemeToggle() {
         <Moon className="w-5 h-5 text-color-foreground group-hover:text-color-primary transition-colors" />
       )}
     </button>
+  );
+}
+
+export default function ThemeToggle() {
+  return (
+    <Suspense fallback={<div className="w-10 h-10 rounded-lg glass" />}>
+      <ThemeToggleButton />
+    </Suspense>
   );
 }
