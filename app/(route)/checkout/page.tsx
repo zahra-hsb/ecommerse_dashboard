@@ -130,7 +130,7 @@ export default function CheckoutPage() {
       <Header />
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold mb-12">Checkout</h1>
+        <h1 className="text-4xl font-bold mb-12">تسویه حساب</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Checkout Form */}
@@ -296,10 +296,10 @@ export default function CheckoutPage() {
                 {isProcessing ? (
                   <>
                     <Loader className="w-4 h-4 animate-spin" />
-                    Processing...
+                    درحال پردازش...
                   </>
                 ) : (
-                  'Complete Purchase'
+                  'تکمیل خرید'
                 )}
               </button>
 
@@ -307,7 +307,7 @@ export default function CheckoutPage() {
                 href="/cart"
                 className="w-full py-2 glass rounded-lg hover:bg-glass-border transition-all text-center block"
               >
-                Back to Cart
+                بازگشت به سبدخرید
               </Link>
             </div>
           </div>
