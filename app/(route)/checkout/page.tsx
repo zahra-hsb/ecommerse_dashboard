@@ -51,17 +51,17 @@ export default function CheckoutPage() {
 
   if (items.length === 0 && !orderComplete) {
     return (
-      <div className="min-h-screen flex flex-col bg-color-background">
+      <div className="min-h-screen flex flex-col bg-background">
         <Header />
         <main className="flex-1 flex items-center justify-center">
           <div className="glass-lg rounded-xl p-12 text-center space-y-6 max-w-md">
-            <h2 className="text-2xl font-bold">Cart is Empty</h2>
-            <p className="text-color-muted-foreground">Add items to proceed with checkout</p>
+            <h2 className="text-2xl font-bold">سبدخرید خالی است</h2>
+            <p className="text-muted-foreground">محصول های مورد نظر خود را به سبدخرید اضافه کنید.</p>
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-color-primary text-color-background font-semibold rounded-lg hover:bg-color-primary-dark transition-all"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-background font-semibold rounded-lg hover:bg-primary-dark transition-all"
             >
-              Continue Shopping
+              ادامه خرید
             </Link>
           </div>
         </main>
@@ -77,46 +77,46 @@ export default function CheckoutPage() {
 
   if (orderComplete) {
     return (
-      <div className="min-h-screen flex flex-col bg-color-background">
+      <div className="min-h-screen flex flex-col bg-background">
         <Header />
         <main className="flex-1 flex items-center justify-center px-4">
           <div className="glass-lg rounded-xl p-12 text-center space-y-6 max-w-md animate-fade-in-up">
-            <CheckCircle className="w-16 h-16 text-color-success mx-auto" />
-            <h1 className="text-3xl font-bold">Order Confirmed!</h1>
+            <CheckCircle className="w-16 h-16 text-success mx-auto" />
+            <h1 className="text-3xl font-bold">سفارش شما تایید شد</h1>
             <div className="space-y-2">
-              <p className="text-color-muted-foreground">
-                Thank you for your purchase. Your order has been confirmed.
+              <p className="text-muted-foreground">
+                باتشکر از خرید شما. می توانید وارد حساب کاربری خود شده و سفارش خود را پیگیری کنید.
               </p>
-              <p className="text-color-primary font-semibold">
-                Order ID: {Math.random().toString(36).substr(2, 9).toUpperCase()}
+              <p className="text-primary font-semibold">
+                شناسه سفارش: {Math.random().toString(36).substr(2, 9).toUpperCase()}
               </p>
             </div>
             <div className="glass rounded-lg p-4 space-y-2 text-left">
               <p className="text-sm">
-                <span className="text-color-muted-foreground">Subtotal:</span>
+                <span className="text-muted-foreground">هزینه محصول:</span>
                 <span className="float-right">${totalPrice.toFixed(2)}</span>
               </p>
               <p className="text-sm">
-                <span className="text-color-muted-foreground">Shipping:</span>
+                <span className="text-muted-foreground">روش ارسال:</span>
                 <span className="float-right">${shippingCost.toFixed(2)}</span>
               </p>
               <p className="text-sm">
-                <span className="text-color-muted-foreground">Tax:</span>
+                <span className="text-muted-foreground">مالیات:</span>
                 <span className="float-right">${tax.toFixed(2)}</span>
               </p>
-              <p className="text-sm font-bold border-t border-color-glass-border pt-2">
-                <span>Total:</span>
+              <p className="text-sm font-bold border-t border-glass-border pt-2">
+                <span>مجموع:</span>
                 <span className="float-right gradient-text">${finalTotal.toFixed(2)}</span>
               </p>
             </div>
-            <p className="text-sm text-color-muted-foreground">
-              A confirmation email has been sent to {formData.email}
+            <p className="text-sm text-muted-foreground">
+              تاییدیه سفارش به ایمیل {formData.email} ارسال شد.
             </p>
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-color-primary text-color-background font-semibold rounded-lg hover:bg-color-primary-dark transition-all w-full justify-center"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-primary text-background font-semibold rounded-lg hover:bg-primary-dark transition-all w-full justify-center"
             >
-              Continue Shopping
+              ادامه خرید
             </Link>
           </div>
         </main>
@@ -126,7 +126,7 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-color-background">
+    <div className="min-h-screen flex flex-col bg-background">
       <Header />
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-12">
@@ -137,68 +137,68 @@ export default function CheckoutPage() {
           <form onSubmit={handleSubmit} className="lg:col-span-2 space-y-6">
             {/* Shipping Address */}
             <div className="glass-lg rounded-xl p-6 space-y-4">
-              <h2 className="text-xl font-bold">Shipping Address</h2>
+              <h2 className="text-xl font-bold">آدرس ارسال</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <input
                   type="text"
                   name="fullName"
-                  placeholder="Full Name"
+                  placeholder="نام کامل"
                   value={formData.fullName}
                   onChange={handleInputChange}
                   required
-                  className="glass rounded-lg px-4 py-3 text-color-foreground placeholder-color-muted focus:outline-none focus:ring-2 focus:ring-color-primary"
+                  className="glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <input
                   type="email"
                   name="email"
-                  placeholder="Email"
+                  placeholder="ایمیل"
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="glass rounded-lg px-4 py-3 text-color-foreground placeholder-color-muted focus:outline-none focus:ring-2 focus:ring-color-primary"
+                  className="glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <input
                   type="tel"
                   name="phone"
-                  placeholder="Phone Number"
+                  placeholder="شماره تماس"
                   value={formData.phone}
                   onChange={handleInputChange}
                   required
-                  className="glass rounded-lg px-4 py-3 text-color-foreground placeholder-color-muted focus:outline-none focus:ring-2 focus:ring-color-primary sm:col-span-2"
+                  className="glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary sm:col-span-2"
                 />
                 <input
                   type="text"
                   name="address"
-                  placeholder="Street Address"
+                  placeholder="خیابان"
                   value={formData.address}
                   onChange={handleInputChange}
                   required
-                  className="glass rounded-lg px-4 py-3 text-color-foreground placeholder-color-muted focus:outline-none focus:ring-2 focus:ring-color-primary sm:col-span-2"
+                  className="glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary sm:col-span-2"
                 />
                 <input
                   type="text"
                   name="city"
-                  placeholder="City"
+                  placeholder="شهر"
                   value={formData.city}
                   onChange={handleInputChange}
                   required
-                  className="glass rounded-lg px-4 py-3 text-color-foreground placeholder-color-muted focus:outline-none focus:ring-2 focus:ring-color-primary"
+                  className="glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary"
                 />
                 <input
                   type="text"
                   name="postalCode"
-                  placeholder="Postal Code"
+                  placeholder="کدپستی"
                   value={formData.postalCode}
                   onChange={handleInputChange}
                   required
-                  className="glass rounded-lg px-4 py-3 text-color-foreground placeholder-color-muted focus:outline-none focus:ring-2 focus:ring-color-primary"
+                  className="glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary"
                 />
-                <select
+                {/* <select
                   name="country"
                   value={formData.country}
                   onChange={handleInputChange}
                   required
-                  className="glass rounded-lg px-4 py-3 text-color-foreground focus:outline-none focus:ring-2 focus:ring-color-primary sm:col-span-2"
+                  className="glass rounded-lg px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-primary sm:col-span-2"
                 >
                   <option value="">Select Country</option>
                   <option value="US">United States</option>
@@ -206,22 +206,22 @@ export default function CheckoutPage() {
                   <option value="UK">United Kingdom</option>
                   <option value="AU">Australia</option>
                   <option value="DE">Germany</option>
-                </select>
+                </select> */}
               </div>
             </div>
 
             {/* Payment Information */}
-            <div className="glass-lg rounded-xl p-6 space-y-4">
-              <h2 className="text-xl font-bold">Payment Information</h2>
+            {/* <div className="glass-lg rounded-xl p-6 space-y-4">
+              <h2 className="text-xl font-bold">اطلاعات پرداخت</h2>
               <div className="space-y-4">
                 <input
                   type="text"
                   name="cardNumber"
-                  placeholder="Card Number (Simulated)"
+                  placeholder="شماره کارت"
                   value={formData.cardNumber}
                   onChange={handleInputChange}
                   required
-                  className="glass rounded-lg px-4 py-3 text-color-foreground placeholder-color-muted focus:outline-none focus:ring-2 focus:ring-color-primary w-full"
+                  className="glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary w-full"
                 />
                 <div className="grid grid-cols-2 gap-4">
                   <input
@@ -231,7 +231,7 @@ export default function CheckoutPage() {
                     value={formData.cardExpiry}
                     onChange={handleInputChange}
                     required
-                    className="glass rounded-lg px-4 py-3 text-color-foreground placeholder-color-muted focus:outline-none focus:ring-2 focus:ring-color-primary"
+                    className="glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                   <input
                     type="text"
@@ -240,58 +240,58 @@ export default function CheckoutPage() {
                     value={formData.cardCVC}
                     onChange={handleInputChange}
                     required
-                    className="glass rounded-lg px-4 py-3 text-color-foreground placeholder-color-muted focus:outline-none focus:ring-2 focus:ring-color-primary"
+                    className="glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary"
                   />
                 </div>
-                <p className="text-xs text-color-muted-foreground">
+                <p className="text-xs text-muted-foreground">
                   This is a simulated checkout. No real payments are processed.
                 </p>
               </div>
-            </div>
+            </div> */}
           </form>
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="glass-lg rounded-xl p-6 space-y-4 sticky top-20">
-              <h2 className="text-xl font-bold">Order Summary</h2>
+              <h2 className="text-xl font-bold">جزییات پرداخت</h2>
 
-              <div className="space-y-3 border-b border-color-glass-border pb-4 max-h-96 overflow-y-auto">
+              <div className="space-y-3 border-b border-glass-border pb-4 max-h-96 overflow-y-auto">
                 {items.map((item) => (
-                  <div key={item.id} className="flex justify-between text-sm">
+                  <div key={item._id} className="flex justify-between text-sm">
                     <div>
                       <p className="font-medium">{item.title}</p>
-                      <p className="text-color-muted text-xs">Qty: {item.quantity}</p>
+                      <p className="text-muted text-xs">تعداد: {item.quantity}</p>
                     </div>
-                    <span className="font-semibold">${(item.price * item.quantity).toFixed(2)}</span>
+                    <span className="font-semibold">تومان {(item.price * item.quantity).toFixed(2)}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="space-y-3 py-4 border-b border-color-glass-border">
+              <div className="space-y-3 py-4 border-b border-glass-border">
                 <div className="flex justify-between text-sm">
-                  <span className="text-color-muted-foreground">Subtotal</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span className="text-muted-foreground">هزینه محصول</span>
+                  <span>تومان {totalPrice.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-color-muted-foreground">Shipping</span>
-                  <span>${shippingCost.toFixed(2)}</span>
+                  <span className="text-muted-foreground">هزینه ارسال</span>
+                  <span>تومان {shippingCost.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-color-muted-foreground">Tax (10%)</span>
-                  <span>${tax.toFixed(2)}</span>
+                  <span className="text-muted-foreground">مالیات (10%)</span>
+                  <span>تومان {tax.toFixed(2)}</span>
                 </div>
               </div>
 
               <div className="flex justify-between font-bold text-lg">
-                <span>Total</span>
-                <span className="gradient-text">${finalTotal.toFixed(2)}</span>
+                <span>مجموع</span>
+                <span className="gradient-text">تومان {finalTotal.toFixed(2)}</span>
               </div>
 
               <button
                 type="submit"
                 onClick={handleSubmit}
                 disabled={isProcessing}
-                className="w-full py-3 bg-color-primary text-color-background font-semibold rounded-lg hover:bg-color-primary-dark transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+                className="w-full py-3 bg-primary text-background font-semibold rounded-lg hover:bg-primary-dark transition-all disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {isProcessing ? (
                   <>
@@ -305,7 +305,7 @@ export default function CheckoutPage() {
 
               <Link
                 href="/cart"
-                className="w-full py-2 glass rounded-lg hover:bg-color-glass-border transition-all text-center block"
+                className="w-full py-2 glass rounded-lg hover:bg-glass-border transition-all text-center block"
               >
                 Back to Cart
               </Link>

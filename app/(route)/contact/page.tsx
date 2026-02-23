@@ -5,6 +5,7 @@ import Header from '@/components/store/Header';
 import Footer from '@/components/store/Footer';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { toast } from 'react-toastify';
+import Link from 'next/link';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ export default function ContactPage() {
     // Simulate form submission
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    toast.success('Message sent! We will get back to you soon.');
+    toast.success('پیام شما ارسال شد! به زودی در قالب ایمیل به شما پاسخ ارسال خواهد شد.');
     setFormData({ name: '', email: '', subject: '', message: '' });
     setIsSubmitting(false);
   };
@@ -38,9 +39,9 @@ export default function ContactPage() {
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-12">
         <div className="text-center space-y-4 mb-12">
-          <h1 className="text-4xl font-bold">Get in Touch</h1>
+          <h1 className="text-4xl font-bold">با ما در تماس باش</h1>
           <p className="text-xl text-color-muted-foreground max-w-2xl mx-auto">
-            We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+           پاسخگوی سوال های شما هستیم
           </p>
         </div>
 
@@ -49,33 +50,33 @@ export default function ContactPage() {
           <div className="lg:col-span-1 space-y-6">
             <div className="glass-lg rounded-xl p-6 space-y-4">
               <div className="flex items-start gap-4">
-                <Phone className="w-6 h-6 text-color-primary flex-shrink-0 mt-1" />
+                <Phone className="w-6 h-6 text-color-primary shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-bold text-lg mb-1">Phone</h3>
-                  <p className="text-color-muted-foreground">+1 (555) 123-4567</p>
-                  <p className="text-sm text-color-muted">Available Mon-Fri, 9am-6pm EST</p>
+                  <h3 className="font-bold text-lg mb-1">شماره تماس</h3>
+                  <Link href="tel:09354345714" className="text-color-muted-foreground">989354345714+</Link>
+                  <p className="text-sm text-color-muted"> شنبه تا جمعه - پشتیبانی 24 ساعته</p>
                 </div>
               </div>
             </div>
 
             <div className="glass-lg rounded-xl p-6 space-y-4">
               <div className="flex items-start gap-4">
-                <Mail className="w-6 h-6 text-color-primary flex-shrink-0 mt-1" />
+                <Mail className="w-6 h-6 text-color-primary shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-bold text-lg mb-1">Email</h3>
-                  <p className="text-color-muted-foreground">hello@luxeaccess.com</p>
-                  <p className="text-sm text-color-muted">We respond within 24 hours</p>
+                  <h3 className="font-bold text-lg mb-1">ایمیل</h3>
+                  <Link href={"mailto:youtab.shop@gmail.com"} className="text-color-muted-foreground">youtab.shop@gmail.com</Link>
+                  <p className="text-sm text-color-muted">تا 24 ساعت آینده پاسخگو هستیم</p>
                 </div>
               </div>
             </div>
 
             <div className="glass-lg rounded-xl p-6 space-y-4">
               <div className="flex items-start gap-4">
-                <MapPin className="w-6 h-6 text-color-primary flex-shrink-0 mt-1" />
+                <MapPin className="w-6 h-6 text-color-primary shrink-0 mt-1" />
                 <div>
-                  <h3 className="font-bold text-lg mb-1">Address</h3>
-                  <p className="text-color-muted-foreground">123 Luxury Ave</p>
-                  <p className="text-color-muted-foreground">San Francisco, CA 94105</p>
+                  <h3 className="font-bold text-lg mb-1">نشانی</h3>
+                  <p className="text-color-muted-foreground"></p>
+                  <p className="text-color-muted-foreground">تهران، شهرقدس</p>
                 </div>
               </div>
             </div>
@@ -111,12 +112,12 @@ export default function ContactPage() {
               required
               className="w-full glass rounded-lg px-4 py-3 text-color-foreground focus:outline-none focus:ring-2 focus:ring-color-primary"
             >
-              <option value="">Select a Subject</option>
-              <option value="general">General Inquiry</option>
-              <option value="order">Order Support</option>
-              <option value="return">Return/Exchange</option>
-              <option value="feedback">Feedback</option>
-              <option value="partnership">Partnership</option>
+              <option value="" className="text-black">انتخاب موضوع</option>
+              <option value="general" className="text-black">عمومی</option>
+              <option value="order" className="text-black">پشتیبانی محصول</option>
+              <option value="return" className="text-black">بازگشت محصول</option>
+              <option value="feedback" className="text-black">ارسال نظر</option>
+              <option value="partnership" className="text-black">همکاری باما</option>
             </select>
 
             <textarea
@@ -135,28 +136,28 @@ export default function ContactPage() {
               className="w-full py-3 bg-color-primary text-color-background font-bold rounded-lg hover:bg-color-primary-dark transition-all disabled:opacity-50 flex items-center justify-center gap-2"
             >
               <Send className="w-4 h-4" />
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? 'درحال ارسال...' : 'ارسال پیام'}
             </button>
           </form>
         </div>
 
         {/* FAQ Section */}
         <section className="glass-lg rounded-xl p-8 space-y-6">
-          <h2 className="text-2xl font-bold">Frequently Asked Questions</h2>
+          <h2 className="text-2xl font-bold">سوالات متداول</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <h3 className="font-bold text-lg mb-2 text-color-primary">What is your return policy?</h3>
+              <h3 className="font-bold text-lg mb-2 text-color-primary">شرایط بازگشت محصول چیه؟</h3>
               <p className="text-color-muted-foreground">
                 We offer a 30-day return policy on all items. Items must be in original condition with all packaging.
               </p>
             </div>
             <div>
-              <h3 className="font-bold text-lg mb-2 text-color-primary">How long does shipping take?</h3>
+              <h3 className="font-bold text-lg mb-2 text-color-primary">ارسال محصول چقدر طول میکشه؟</h3>
               <p className="text-color-muted-foreground">
                 Standard shipping takes 3-5 business days. Express shipping available for 1-2 day delivery.
               </p>
             </div>
-            <div>
+            {/* <div>
               <h3 className="font-bold text-lg mb-2 text-color-primary">Are your products authentic?</h3>
               <p className="text-color-muted-foreground">
                 Yes, all products are 100% authentic. Premium items include certificates of authenticity.
@@ -167,7 +168,7 @@ export default function ContactPage() {
               <p className="text-color-muted-foreground">
                 Most items come with a 2-year manufacturer's warranty. Check product details for specifics.
               </p>
-            </div>
+            </div> */}
           </div>
         </section>
       </main>

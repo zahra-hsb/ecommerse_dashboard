@@ -8,11 +8,15 @@ import { Star, ShoppingCart, Heart, Share2, Truck, Shield, RotateCcw } from 'luc
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { toast } from 'react-toastify';
+import { ProductType } from '@/utils/schemas/types';
 
-const mockProducts: Record<string, unknown> = {
+const mockProducts: Record<string, ProductType> = {
   '1': {
-    id: '1',
+    _id: '1',
     title: 'Elegant Gold Bracelet',
+    count: 20,
+    createdAt: "",
+    userId: "",
     price: 899,
     originalPrice: 1200,
     rating: 5,
@@ -28,11 +32,11 @@ const mockProducts: Record<string, unknown> = {
       width: '8mm',
       length: 'Adjustable',
     },
-    inStock: true,
-    sku: 'GOLD-BRAC-001',
+    // inStock: true,
+    // sku: 'GOLD-BRAC-001',
   },
   '2': {
-    id: '2',
+    _id: '2',
     title: 'Classic Leather Watch',
     price: 1299,
     originalPrice: 1599,
@@ -49,8 +53,8 @@ const mockProducts: Record<string, unknown> = {
       strap: 'Italian Leather',
       waterResistance: '50m',
     },
-    inStock: true,
-    sku: 'WATCH-001',
+    // inStock: true,
+    // sku: 'WATCH-001',
   },
 };
 
@@ -65,7 +69,7 @@ export default function ProductPage() {
 
   const handleAddToCart = () => {
     addItem({
-      id: product?.id,
+      _id: product?._id || "",
       title: product?.title,
       price: product?.price,
       quantity,
@@ -85,7 +89,7 @@ export default function ProductPage() {
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 mb-8 text-sm text-muted-foreground">
           <Link href="/shop" className="hover:text-primary transition-colors">
-            Shop
+            فروشگاه
           </Link>
           <span>/</span>
           <Link
@@ -124,7 +128,7 @@ export default function ProductPage() {
                       ))}
                     </div>
                     <span className="text-sm text-muted">
-                      {product?.rating} ({product?.reviews} reviews)
+                      {product?.rating} ({product?.reviews} نظر)
                     </span>
                   </div>
                 </div>
@@ -154,9 +158,9 @@ export default function ProductPage() {
                   </>
                 )}
               </div>
-              <p className="text-success text-sm font-semibold">
+              {/* <p className="text-success text-sm font-semibold">
                 {product?.inStock ? '✓ In Stock' : 'Out of Stock'}
-              </p>
+              </p> */}
             </div>
 
             {/* Description */}
@@ -167,7 +171,7 @@ export default function ProductPage() {
             {/* Quantity & Add to Cart */}
             <div className="space-y-4">
               <div className="glass rounded-lg p-4 flex items-center gap-4">
-                <span className="text-muted-foreground">Quantity:</span>
+                <span className="text-muted-foreground">تعداد:</span>
                 <div className="flex items-center gap-3 ml-auto">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -187,16 +191,16 @@ export default function ProductPage() {
 
               <button
                 onClick={handleAddToCart}
-                disabled={!product?.inStock}
+                // disabled={!product?.inStock}
                 className="w-full py-4 bg-primary text-background font-bold rounded-lg hover:bg-primary-dark transition-all disabled:opacity-50 flex items-center justify-center gap-2 text-lg"
               >
                 <ShoppingCart className="w-5 h-5" />
-                Add to Cart
+                افزودن به سبدخرید
               </button>
 
               <button className="w-full py-3 glass rounded-lg hover:bg-glass-border transition-all flex items-center justify-center gap-2 font-semibold">
                 <Share2 className="w-4 h-4" />
-                Share
+                اشتراک گزاری
               </button>
             </div>
 
@@ -204,18 +208,18 @@ export default function ProductPage() {
             <div className="grid grid-cols-3 gap-4 glass-lg rounded-xl p-6">
               <div className="text-center">
                 <Truck className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="text-sm font-semibold">Free Shipping</p>
-                <p className="text-xs text-muted">On orders over $100</p>
+                <p className="text-sm font-semibold">ارسال رایگان</p>
+                <p className="text-xs text-muted">هزینه ارسال روی محصول</p>
               </div>
               <div className="text-center">
                 <Shield className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="text-sm font-semibold">2 Year Warranty</p>
-                <p className="text-xs text-muted">Full protection</p>
+                <p className="text-sm font-semibold">ضمانت محصول</p>
+                <p className="text-xs text-muted">با کیفیت عالی</p>
               </div>
               <div className="text-center">
                 <RotateCcw className="w-6 h-6 text-primary mx-auto mb-2" />
-                <p className="text-sm font-semibold">30-Day Returns</p>
-                <p className="text-xs text-muted">No questions asked</p>
+                <p className="text-sm font-semibold">بازگشت محصول</p>
+                <p className="text-xs text-muted">در صورت خرابی</p>
               </div>
             </div>
           </div>
@@ -223,7 +227,7 @@ export default function ProductPage() {
 
         {/* Specifications */}
         <div className="mt-16 glass-lg rounded-xl p-8">
-          <h2 className="text-2xl font-bold mb-6">Specifications</h2>
+          <h2 className="text-2xl font-bold mb-6">ویژگی های محصول</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {Object.entries(product?.specifications || {}).map(([key, value]) => (
               <div key={key} className="flex justify-between items-center pb-4 border-b border-glass-border last:border-0">
@@ -236,7 +240,7 @@ export default function ProductPage() {
 
         {/* Related Products */}
         <div className="mt-16">
-          <h2 className="text-2xl font-bold mb-6">You May Also Like</h2>
+          <h2 className="text-2xl font-bold mb-6">محصولات مرتبط</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {[...Array(4)].map((_, i) => (
               <div key={i} className="glass-lg rounded-lg p-4 h-64 flex items-center justify-center">

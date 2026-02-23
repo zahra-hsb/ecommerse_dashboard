@@ -13,9 +13,9 @@ export default function AboutPage() {
         {/* Hero Section */}
         <section className="max-w-6xl mx-auto px-4 py-20">
           <div className="text-center space-y-4 mb-12">
-            <h1 className="text-5xl font-bold">About LuxeAccess</h1>
+            <h1 className="text-5xl font-bold">درباره ما</h1>
             <p className="text-xl text-color-muted-foreground max-w-2xl mx-auto">
-              Premium accessories for those who appreciate quality, style, and elegance
+              یوتاب فروشگاه اکسسوری، آماده خدمت رسانی به شما مردم در سراسر کشور
             </p>
           </div>
 
@@ -33,25 +33,25 @@ export default function AboutPage() {
 
         {/* Values Section */}
         <section className="max-w-6xl mx-auto px-4 py-20">
-          <h2 className="text-4xl font-bold text-center mb-12">Our Values</h2>
+          <h2 className="text-4xl font-bold text-center mb-12">ارزش های ما</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="glass-lg rounded-xl p-8 text-center space-y-4">
               <Award className="w-12 h-12 text-color-primary mx-auto" />
-              <h3 className="text-xl font-bold">Quality</h3>
+              <h3 className="text-xl font-bold">کیفیت بالا</h3>
               <p className="text-color-muted-foreground">
                 We only source accessories from premium manufacturers who maintain the highest standards of craftsmanship.
               </p>
             </div>
             <div className="glass-lg rounded-xl p-8 text-center space-y-4">
               <Heart className="w-12 h-12 text-color-primary mx-auto" />
-              <h3 className="text-xl font-bold">Authenticity</h3>
+              <h3 className="text-xl font-bold">اصالت</h3>
               <p className="text-color-muted-foreground">
                 Every product is guaranteed to be 100% authentic. We provide certificates of authenticity with all premium pieces.
               </p>
             </div>
             <div className="glass-lg rounded-xl p-8 text-center space-y-4">
               <Sparkles className="w-12 h-12 text-color-primary mx-auto" />
-              <h3 className="text-xl font-bold">Style</h3>
+              <h3 className="text-xl font-bold">استایل</h3>
               <p className="text-color-muted-foreground">
                 Our collection celebrates timeless elegance and contemporary design, ensuring something for every taste.
               </p>
@@ -64,25 +64,25 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="glass-lg rounded-xl p-8 text-center space-y-2">
               <div className="text-4xl font-bold gradient-text">500+</div>
-              <p className="text-color-muted-foreground">Premium Items</p>
+              <p className="text-color-muted-foreground">آیتم های باکیفیت</p>
             </div>
             <div className="glass-lg rounded-xl p-8 text-center space-y-2">
               <div className="text-4xl font-bold gradient-text">50K+</div>
-              <p className="text-color-muted-foreground">Happy Customers</p>
+              <p className="text-color-muted-foreground">رضایتمندی مشتریان</p>
             </div>
             <div className="glass-lg rounded-xl p-8 text-center space-y-2">
               <div className="text-4xl font-bold gradient-text">4.9★</div>
-              <p className="text-color-muted-foreground">Average Rating</p>
+              <p className="text-color-muted-foreground">میانگین رتبه</p>
             </div>
             <div className="glass-lg rounded-xl p-8 text-center space-y-2">
               <div className="text-4xl font-bold gradient-text">24H</div>
-              <p className="text-color-muted-foreground">Fast Shipping</p>
+              <p className="text-color-muted-foreground">ارسال سریع</p>
             </div>
           </div>
         </section>
 
         {/* Team Section */}
-        <section className="max-w-6xl mx-auto px-4 py-20">
+        {/* <section className="max-w-6xl mx-auto px-4 py-20">
           <h2 className="text-4xl font-bold text-center mb-12">Our Team</h2>
           <div className="glass-lg rounded-2xl p-12 text-center space-y-6">
             <p className="text-xl text-color-foreground leading-relaxed max-w-2xl mx-auto">
@@ -92,7 +92,7 @@ export default function AboutPage() {
               Each team member is dedicated to helping you find the perfect accessory and ensuring your complete satisfaction.
             </p>
           </div>
-        </section>
+        </section> */}
       </main>
 
       <Footer />

@@ -45,11 +45,15 @@ export interface ProductType {
   _id?: string;
   title: string;
   description: string;
+  fullDescription: string;
   mainImage?: string;
   category?: string;
-  properties?: {
+  specifications?: {
     [key: string]: unknown;
   };
+  originalPrice: number;
+  rating: number;
+  reviews: number;
   count: number;
   price: number;
   createdAt: Date;
