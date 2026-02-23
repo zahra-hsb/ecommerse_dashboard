@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ToastContainer } from "react-toastify";
 import AuthProvider from "@/components/pages/AuthProvider";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 import localFont from 'next/font/local'
 
@@ -32,10 +33,12 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
       <body className={`antialiased ${myFont.className}`}>
-        <AuthProvider>
-          <ToastContainer />
-          {children}
-        </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <ToastContainer />
+            {children}
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { ShoppingBag, Search, Menu, X, MessageCircle } from 'lucide-react';
 import SiteLogo from '../globals/SiteLogo';
 import Navigation from './Navigation';
+import ThemeToggle from '../globals/ThemeToggle';
 import { usePathname } from 'next/navigation';
 
 const mobileMenuItems = [
@@ -48,6 +49,9 @@ export default function Header() {
                 0
               </span>
             </Link>
+
+            {/* Theme Toggle */}
+            <ThemeToggle />
 
             {/* Mobile Menu Button */}
             <button
