@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  console.log("token => ", pathname);
+  // console.log("token => ", pathname);
 
   //   const excludedPaths = ["/"];
   //   const isExcluded = excludedPaths.some((path) => pathname === path);
@@ -16,15 +16,17 @@ export function middleware(request: NextRequest) {
   // console.info(isAuthenticated())
 
   const token = request.cookies.get("auth-token")?.value;
-  if (!token) {
+  if (pathname.includes("/panel/dashboard") && !token) {
     const loginUrl = new URL("/login", request.url);
+    console.log("token => ", token, loginUrl);
     return NextResponse.redirect(loginUrl);
   } else if (pathname.includes("/login") && token) {
     const panelUrl = new URL("/panel/dashboard", request.url);
     return NextResponse.redirect(panelUrl);
+  } else {
+    return NextResponse.next();
   }
 
-  //   return NextResponse.next();
 
   // return NextResponse.redirect(new URL('/', request.url))
 }

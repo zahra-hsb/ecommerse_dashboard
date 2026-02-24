@@ -20,7 +20,7 @@ const TextInput = ({
         <input
           type={type}
           dir={dir}
-          className={`p-2 rounded-xl bg-[#d9d9d95b] outline-0 px-3 focus:shadow-lg w-full shadow-sm ${className} ${icon ? 'pl-12' : ''}`}
+          className={`p-2 bg-[#d9d9d95b] outline-0 focus:shadow-lg w-full shadow-sm glass rounded-lg px-4 py-3 text-foreground placeholder-muted focus:outline-none focus:ring-2 focus:ring-primary ${className} ${icon ? 'pl-12' : ''}`}
           placeholder={placeholder}
           id={id}
           // name={name}

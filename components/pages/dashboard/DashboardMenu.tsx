@@ -4,6 +4,7 @@ import Button from "@/components/globals/Button";
 import { userStore } from "@/utils/stores/userStore";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ImExit } from "react-icons/im";
 
 const menuItems = [
   { id: 0, title: "داشبورد", path: "/panel/dashboard" },
@@ -21,16 +22,18 @@ const DashboardMenu = () => {
   };
   return (
     <>
-      <ul className="flex flex-col gap-5 text-base">
+      <ul className="flex flex-col items-start gap-5 text-base">
         {menuItems.map((item) => (
           <li key={item.id}>
-            <Link className="hover:text-gray-900/60" href={item.path}>
+            <Link className="hover:text-primary" href={item.path}>
               {item.title}
             </Link>
           </li>
         ))}
       </ul>
-      <Button onClick={onExit}>خروج</Button>
+      <Button className="flex gap-2 items-center justify-center" onClick={onExit}>خروج
+        <ImExit />
+      </Button>
     </>
   );
 };

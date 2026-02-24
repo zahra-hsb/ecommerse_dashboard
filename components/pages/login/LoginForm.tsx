@@ -67,7 +67,7 @@ const LoginForm = () => {
         dir="ltr"
         icon={
           <>
-            <FaUser className="absolute top-3 left-5" />
+            <FaUser className="absolute top-4 left-5" />
           </>
         }
         register={register}
@@ -82,7 +82,7 @@ const LoginForm = () => {
         dir="ltr"
         icon={
           <>
-            <RiLockPasswordFill className="absolute top-3 left-5" />
+            <RiLockPasswordFill className="absolute top-4 left-5" />
           </>
         }
         register={register}

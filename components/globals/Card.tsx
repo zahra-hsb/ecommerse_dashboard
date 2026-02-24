@@ -7,7 +7,7 @@ const Card = ({
   children: ReactNode;
   className?: string;
 }) => {
-  return <section className={`bg-white p-10 rounded-xl shadow ${className}`}>{children}</section>;
+  return <section className={`glass-lg rounded-2xl p-12 text-center space-y-6 shadow-lg  ${className}`}>{children}</section>;
 };
 
 export default Card;
