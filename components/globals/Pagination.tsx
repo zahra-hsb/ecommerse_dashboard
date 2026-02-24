@@ -14,10 +14,10 @@ const Pagination = ({
     const [isDisablePrev, setDisablePrev] = useState(false)
     return (
         <>
-            <Button disabled={isDisablePrev} onClick={() => onPrevPage(setDisablePrev)} className={` ${isDisablePrev ? "bg-black/30" : ""} !w-10 !h-10 !p-`}>
+            <Button disabled={isDisablePrev} onClick={() => onPrevPage(setDisablePrev)} className={` ${isDisablePrev ? "bg-black/30" : ""} w-10! h-10! !p-`}>
                 {prevPageIcon}
             </Button>
-            <Button disabled={isDisableNext} onClick={() => onNextPage(setDisableNext)} className={` ${isDisableNext ? "bg-black/30" : ""} !w-10 !h-10 !p-`}>
+            <Button disabled={isDisableNext} onClick={() => onNextPage(setDisableNext)} className={` ${isDisableNext ? "bg-black/30" : ""} w-10! h-10! mb-6!`}>
                 {nextPageIcon}
             </Button>
         </>
